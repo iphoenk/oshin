@@ -63,3 +63,36 @@ toll-corridor landing links are attached under `binamarga-tol`.
 
 All records are metadata-only until per-feed permission, coordinates,
 and live data are independently verified. No unapproved stream proxy.
+
+## Mandatory national coverage master (all cities + regencies)
+
+The `public/oshin/cctv/regions.json` master has **every second-tier
+administrative region** from normalized [Kepmendagri No.
+300.2.2-2138/2025](https://peraturan.bpk.go.id/Details/322942/keputusan-mendagri-no-nomor-30022-2138-tahun)
+data maintained at
+[awanaprilino/wilayah-administrasi-kemendagri](https://github.com/awanaprilino/wilayah-administrasi-kemendagri).
+
+- **38 provinces, 514 kabupaten/kota, 98 cities (93 autonomous + 5 Jakarta
+  administrative cities), 416 regencies**.
+- Data recorded in place as a full research **coverage register**, not
+  a claim that all have publicly accessible CCTV.
+- 11 cities have one or more **direct portal source candidates**;
+  5 Jakarta administrative cities have only an **unassigned DKI province-level
+  portal candidate**. The remaining 82 cities are explicitly
+  `NO_SOURCE_MAPPED` (research pending).
+- Kabupaten are also fully listed with direct sources where matched,
+  and otherwise marked as discovery backlog.
+- National/toll source lists cannot be assigned to every city solely
+  because a highway crosses its jurisdiction. Geo-assignment requires
+  official camera or route coordinates.
+- A missing source is not evidence of no CCTV; a government public portal
+  is not evidence of stream availability, camera placement or authorization.
+- No live cameras nor coordinates are marked verified in the master.
+- UI route: `/oshin/cctv/regions.html`, with searchable/sortable
+  source candidates, province filtering, city/regency switch, source links.
+  The homepage remains `/oshin/cctv/` with a prominent link.
+
+Progress must increment only with evidence:
+`NO_SOURCE_MAPPED` -> `SOURCE_CANDIDATE` ->
+operator-verified camera metadata -> individually validated playback ->
+confirmed rights and operational readiness. Do not skip steps.

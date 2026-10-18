@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a1421" />
+  <meta name="description" content="OSHIN CCTV Indonesia: master wajib seluruh 98 kota dan 416 kabupaten dengan status inventaris sumber kamera publik." />
+  <title>OSHIN · Cakupan Nasional CCTV</title>
+  <link rel="stylesheet" href="./regions.css" />
+</head>
+<body>
+  <header>
+    <a class="brand" href="/"><span class="mark">◉</span> OSHIN <span class="lighter">/ CAKUPAN NASIONAL</span></a>
+    <a href="./" class="small-link">← Registry CCTV</a>
+  </header>
+  <main>
+    <div class="hero">
+      <div class="eyebrow">MANDATORY NATIONAL COVERAGE · OCT 2026</div>
+      <h1>Setiap Kota. Setiap Kabupaten.</h1>
+      <p>Seluruh kota wajib tercatat, termasuk yang belum ditemukan portal CCTV publiknya. Daftar wilayah bukan bukti CCTV aktif, dan sumber terdaftar belum tentu boleh ditayangkan ulang.</p>
+    </div>
+    <section class="stats" id="stats" aria-label="Statistik cakupan"></section>
+    <section class="filters" aria-label="Filter cakupan CCTV">
+      <label>Jenis wilayah
+        <select id="kind"><option value="CITY">98 Kota</option><option value="REGENCY">416 Kabupaten</option><option value="ALL">Semua 514 wilayah</option></select>
+      </label>
+      <label>Provinsi<select id="province"><option value="">Semua provinsi</option></select></label>
+      <label>Hasil pemetaan
+        <select id="status">
+          <option value="">Semua status</option>
+          <option value="SOURCE_CANDIDATE">Kandidat portal langsung</option>
+          <option value="PROVINCE_PORTAL_CANDIDATE">Portal tingkat provinsi</option>
+          <option value="HISTORICAL_SOURCE_ONLY">Portal lama / offline</option>
+          <option value="NO_SOURCE_MAPPED">Belum ada sumber terpetakan</option>
+        </select>
+      </label>
+      <label>Pencarian<input id="search" type="search" placeholder="Malang, Jakarta Selatan, Sorong, ..." /></label>
+    </section>
+    <div class="list-info" id="info" role="status">Memuat daftar...</div>
+    <section class="results" id="results" aria-label="Daftar kota dan kabupaten"></section>
+    <button type="button" id="more" class="more" hidden>Tampilkan 30 wilayah berikutnya</button>
+    <footer><strong>Integritas data:</strong> status <em>Belum ada sumber terpetakan</em> bukan berarti pemerintah daerah tidak memiliki kamera. Kamera privat, akses yang bocor, serta pengambilan ulang video tanpa izin tidak masuk registry. Tidak ada pin kamera dari koordinat pusat kota.</footer>
+  </main>
+  <script type="module" src="./regions.js"></script>
+</body>
+</html>
