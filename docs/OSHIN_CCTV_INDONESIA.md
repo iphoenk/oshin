@@ -96,3 +96,53 @@ Progress must increment only with evidence:
 `NO_SOURCE_MAPPED` -> `SOURCE_CANDIDATE` ->
 operator-verified camera metadata -> individually validated playback ->
 confirmed rights and operational readiness. Do not skip steps.
+
+## Expanded official-source discovery · 19 October 2026
+
+Twelve additional, explicitly identified public government/operator
+sources have been added, taking the source registry from **25 to 37**.
+The 514-region master has **22 cities** with one or more directly matched
+candidates, **5 DKI administrative cities** with the provincial portal
+candidate only, and **71 cities** with no matched public portal *yet*.
+
+| Jurisdiction | Official public evidence | What it proves |
+| --- | --- | --- |
+| Banda Aceh | https://cctv.bandaacehkota.go.id/ | Municipal CCTV catalog claims 56 cameras, 43 'online' |
+| Jambi | https://cctv.jambikota.go.id/ | City public player lists junction camera names |
+| Palembang | https://cctv.palembang.go.id/ | City CCTV map says 30 online cameras |
+| Pekanbaru | https://cctv-map.pekanbaru.go.id/ and https://cctv-map.pekanbaru.go.id/cctv | **Conflicting counters:** landing claims 70/88 cameras and 41 HLS online, map index says 0; do not promote to operational |
+| Banjarmasin | https://atcs.banjarmasinkota.go.id/ | 35 public cameras claimed on official portal |
+| Banjar (West Java) | https://atcs.banjarkota.go.id/ | Official live camera selector and named junctions |
+| Samarinda | https://samarindakota.go.id/layanan/cctv | 8 public camera choices, official YouTube-based viewing |
+| Banjarbaru | https://cctv.banjarbarukota.go.id/ | Official camera location map; exact coordinates unverified |
+| Pontianak | https://www.pontianak.go.id/pontianak-hari-ini/berita/Dishub-Pontianak-Tambah-Titik-Lokasi-CCTV | Government explicitly shares 17 individual YouTube CCTV watch links published in Nov 2025 |
+| Balikpapan | https://dishub.balikpapan.go.id/halaman/b-connect-balikpapan-connectivity | B-CONNECT mobile CCTV access documented; no open feed established |
+| Kendari | https://satudata.kendarikota.go.id/dataset/?organization=diskominfo | Official municipality CCTV XLSX metadata dataset, **not live video** |
+| Kabupaten Kotabaru | https://simperhubungan.dishubkotabaru.id/atcs | 3 ATCS junctions / 12 camera units publisher-claimed; portal not live tested |
+
+### Pontianak published YouTube views
+
+17 named watch URLs, as printed in the official 2025 city article, are
+recorded in `registry.json` as `public_viewing_url`. Each opens the
+YouTube viewing page in a new tab rather than ripping segments or
+proxying HLS streams. **No claim the specific broadcasts remain live
+as of 2026-10-19.** Embedding also requires separate checks and is
+not enabled. Registry's 58 named camera entries comprise 41 Tasikmalaya
+HLS metadata plus 17 historical Pontianak YouTube viewing links.
+
+### Source hygiene observations
+
+- Metadata labels `online`, `LIVE`, `24/7`, or an HLS MIME header
+  are publisher-side assertions, not independently verified stream health.
+- The Pekanbaru GeoPortal and GIS map show contradictory status and totals.
+  This is deliberately preserved as an audit flag.
+- Private-camera directories, aggregator directories claiming thousands
+  of cameras including court waiting rooms, and third-party unauthorized
+  restreaming are excluded from OSHIN's official camera registry.
+- Court, education, residential and surveillance-control footage have a
+  heightened personal-data and consent risk. **Do not assume public view
+  constitutes authorization for OSHIN redistribution.**
+- Locations listed by a city without verified coordinates remain
+  place *names only*. No inferred or city-centre pins appear on the globe.
+- Only outbound links to deliberately published government-facing
+  information and watch pages have been added.

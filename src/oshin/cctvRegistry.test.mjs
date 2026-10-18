@@ -13,8 +13,8 @@ test('original upload stays auditable and source count is never inflated', () =>
   assert.equal(original.sources.length, 14);
   assert.equal(original.sources[0].camera_count, 45);
   assert.equal(original.sources[0].cameras.length, 41);
-  assert.equal(registry.sources.length, 25);
-  assert.equal(registry.statistics.unique_named_cameras, 41);
+  assert.equal(registry.sources.length, 37);
+  assert.equal(registry.statistics.unique_named_cameras, 58);
   assert.equal(registry.statistics.claimed_tasikmalaya_count, 45);
   assert.equal(registry.statistics.listed_tasikmalaya_count, 41);
 });
@@ -77,4 +77,32 @@ test('eight highway pages are official outbound portal links, not media relay UR
   assert.equal(routes.length,8);
   for(const route of routes)
     assert.match(route.url,/^https:\/\/binamarga\.pu\.go\.id\/contents\/cctv_tol\/\?id_ruas=[a-z0-9-]+$/);
+});
+
+test('official source intake adds 12 operators without promoting unverified streams', () => {
+ assert.equal(registry.statistics.added_official_sources_2026_10_19,12);
+ assert.equal(registry.statistics.pontianak_public_youtube_view_links,17);
+ for (const s of registry.sources.filter(x => x.evidence_collected_at === '2026-10-19')) {
+   assert.equal(s.embedding_permission,'UNKNOWN');
+   assert.equal(s.streaming_verification,'NOT_VERIFIED_BY_OSHIN');
+   assert.equal(s.integration_status,'METADATA_ONLY');
+   assert.ok(s.evidence_url.startsWith('https://'));
+ }
+});
+test('historical Pontianak watch links are only official YouTube pages and have no playable claims', () => {
+ const src = registry.sources.find(s => s.id === 'youtube-pontianak-dishub');
+ assert.equal(src.cameras.length,17);
+ for (const c of src.cameras) {
+  assert.match(c.public_viewing_url,/^https:\/\/www\.youtube\.com\/live\/[A-Za-z0-9_-]{11}$/);
+  assert.equal(c.official_feed_url,null);
+  assert.equal(c.location,null);
+  assert.equal(c.feed_playback_verified,false);
+  assert.equal(c.embedding_permission,'UNKNOWN');
+ }
+});
+test('Pekanbaru conflicting operator totals remain flagged, not treated as active', () => {
+ const source=registry.sources.find(s=>s.id==='cctv-pekanbaru-map');
+ assert.equal(source.claimed_status,'official_claims_inconsistent');
+ assert.equal(source.declared_camera_count,null);
+ assert.equal(source.streaming_verification,'NOT_VERIFIED_BY_OSHIN');
 });

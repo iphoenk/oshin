@@ -60,6 +60,16 @@ function cameraPanel(cameras) {
     const item = element('li');
     item.append(element('span', '', camera.label));
     item.append(element('span', 'camera-type', camera.camera_type || '—'));
+    // Officially published YouTube WATCH links only; no media extraction/rehosting.
+    if (typeof camera.public_viewing_url === 'string' &&
+        /^https:\/\/www\.youtube\.com\/live\/[A-Za-z0-9_-]{11}$/.test(camera.public_viewing_url)) {
+      const anchor = element('a', 'camera-watch-link', 'Tonton di YouTube ↗');
+      anchor.href = camera.public_viewing_url;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+      anchor.title = 'Tautan siaran yang pernah dipublikasikan oleh Pemkot; status live saat ini belum terverifikasi';
+      item.append(anchor);
+    }
     list.append(item);
   }
   details.append(list);
