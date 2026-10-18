@@ -1,18 +1,22 @@
 {
   "_schema": {
     "name": "OSHIN Public CCTV Indonesia · Provenance Registry",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "imported_on": "2026-10-18",
     "user_uploaded_source_version": "0.1.0",
-    "note": "A public portal, asserted verified_live, or HLS MIME header is NOT proof that every camera is live, embeddable, or redistributable. No auto-play/proxy without operator rights; coordinates are camera-level only."
+    "note": "A public portal, asserted verified_live, or HLS MIME header is NOT proof that every camera is live, embeddable, or redistributable. No auto-play/proxy without operator rights; coordinates are camera-level only.",
+    "priority_note": "P0 prioritization for DKI, Malang Raya (Kota Malang verified portal only), Surabaya and tolls. No OSHIN per-camera live verification or retransmission permission."
   },
   "statistics": {
-    "sources": 22,
+    "sources": 25,
     "unique_named_cameras": 41,
     "claimed_tasikmalaya_count": 45,
     "listed_tasikmalaya_count": 41,
     "camera_coordinates_verified": 0,
-    "playback_verified_by_oshin": 0
+    "playback_verified_by_oshin": 0,
+    "p0_sources": 7,
+    "p0_corridor_links": 8,
+    "p0_regions": 4
   },
   "sources": [
     {
@@ -716,7 +720,7 @@
       "declared_stream_format": "unknown",
       "claimed_status": "robots_blocked",
       "registry_verified_on": "2026-10-18",
-      "research_observation": "Diblok robots.txt. Domain alternatif mungkin sits/gis Surabaya. Cek via browser lokal.",
+      "research_observation": "The uploaded Surabaya ATCS portal was robots_blocked. Government operates a separate SITS CCTV public viewing app, but this does not establish an approved web/JSON/HLS feed.",
       "provenance": "uploaded_registry_2026_10_18",
       "declared_camera_count": null,
       "registered_camera_count": 0,
@@ -726,7 +730,12 @@
       "no_capture_download": false,
       "integration_status": "METADATA_ONLY",
       "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
-      "cameras": []
+      "cameras": [],
+      "priority_level": "P0",
+      "priority_tags": [
+        "P0_SURABAYA"
+      ],
+      "official_related_url": "https://dishub.surabaya.go.id/portal/post/20250829131456"
     },
     {
       "id": "pantau-jogja",
@@ -803,12 +812,12 @@
       "category": "toll",
       "province": "Nasional",
       "regency_city": null,
-      "portal_url": "https://bpjt.pu.go.id/cctv/cctv_inframe",
+      "portal_url": "https://bpjt.pu.go.id/cctv/",
       "additional_portal_url": null,
       "declared_stream_format": "iframe_embed",
       "claimed_status": "needs_probe",
       "registry_verified_on": "2026-10-18",
-      "research_observation": "CCTV ruas tol via iframe. Perlu probe untuk ekstrak daftar ruas + URL stream.",
+      "research_observation": "Official BPJT toll CCTV portal enumerates road corridors. Its FAQ states public real-time viewing is available; CCTV archive/history is restricted, and no third-party republishing rights have been established.",
       "provenance": "uploaded_registry_2026_10_18",
       "declared_camera_count": null,
       "registered_camera_count": 0,
@@ -818,7 +827,25 @@
       "no_capture_download": false,
       "integration_status": "METADATA_ONLY",
       "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
-      "cameras": []
+      "cameras": [],
+      "priority_level": "P0",
+      "priority_tags": [
+        "P0_TOL"
+      ],
+      "observed_public_listing": true,
+      "official_related_url": "https://bpjt.pu.go.id/faq/apakah-data-cctv-tersedia-di-bpjt/",
+      "route_examples": [
+        "Jakarta–Bogor–Ciawi",
+        "Dalam Kota",
+        "Sedyatmo",
+        "JORR E",
+        "Jakarta–Cikampek",
+        "Surabaya–Gempol",
+        "Surabaya–Gresik",
+        "Pandaan–Malang",
+        "Gempol–Pandaan",
+        "Mojokerto–Surabaya"
+      ]
     },
     {
       "id": "binamarga-tol",
@@ -826,12 +853,12 @@
       "category": "toll",
       "province": "Nasional",
       "regency_city": null,
-      "portal_url": "https://binamarga.pu.go.id/contents/cctv",
+      "portal_url": "https://binamarga.pu.go.id/contents/cctv_tol",
       "additional_portal_url": null,
       "declared_stream_format": "iframe_embed",
       "claimed_status": "needs_probe",
       "registry_verified_on": "2026-10-18",
-      "research_observation": "CCTV tol + non-tol via embed. Perlu probe.",
+      "research_observation": "Official Bina Marga catalog has eight linked corridor pages with camera labels; website online counts are operator-side claims, not independently verified OSHIN playback.",
       "provenance": "uploaded_registry_2026_10_18",
       "declared_camera_count": null,
       "registered_camera_count": 0,
@@ -841,7 +868,49 @@
       "no_capture_download": false,
       "integration_status": "METADATA_ONLY",
       "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
-      "cameras": []
+      "cameras": [],
+      "priority_level": "P0",
+      "priority_tags": [
+        "P0_TOL",
+        "P0_DKI",
+        "P0_MALANG",
+        "P0_SURABAYA"
+      ],
+      "observed_public_listing": true,
+      "corridor_links": [
+        {
+          "label": "DKI · Dalam Kota",
+          "url": "https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=dalam-kota"
+        },
+        {
+          "label": "DKI · JORR S",
+          "url": "https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=jorr-s"
+        },
+        {
+          "label": "DKI · Sedyatmo",
+          "url": "https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=sedyatmo"
+        },
+        {
+          "label": "DKI · JORR E",
+          "url": "https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=jorr-e-bambu-apus-rorotan"
+        },
+        {
+          "label": "Malang · Pandaan–Malang",
+          "url": "https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=pandaan-malang"
+        },
+        {
+          "label": "Surabaya · Surabaya–Gempol",
+          "url": "https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=surabaya-gempol"
+        },
+        {
+          "label": "Surabaya · Surabaya–Gresik",
+          "url": "https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=surabaya-gresik"
+        },
+        {
+          "label": "Jatim · Kertosono–Mojokerto",
+          "url": "https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=kemo"
+        }
+      ]
     },
     {
       "id": "jakarta-smartcity",
@@ -923,7 +992,7 @@
       "declared_stream_format": "iframe_embed",
       "claimed_status": "portal_public_listed",
       "registry_verified_on": null,
-      "research_observation": "Official CCTV Publik page publishes named location camera listings and iframe labels; video playback and embed rights not independently confirmed",
+      "research_observation": "Official Jakarta CCTV Publik page lists camera sites at Gatot Subroto, Thamrin, Tanah Abang, Senayan and Gerbang Pemuda; individual playback and embedding rights not verified by OSHIN.",
       "provenance": "official_portal_web_review",
       "declared_camera_count": null,
       "registered_camera_count": 0,
@@ -933,7 +1002,20 @@
       "no_capture_download": false,
       "integration_status": "METADATA_ONLY",
       "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
-      "cameras": []
+      "cameras": [],
+      "priority_level": "P0",
+      "priority_tags": [
+        "P0_DKI"
+      ],
+      "observed_public_listing": true,
+      "named_location_examples": [
+        "JPO Gatot Subroto",
+        "Jl. MH Thamrin",
+        "Gerbang Pemuda",
+        "Pasar Tanah Abang",
+        "Senayan",
+        "Simpang Sultan Agung"
+      ]
     },
     {
       "id": "bogor-single-window",
@@ -1095,6 +1177,87 @@
       "integration_status": "METADATA_ONLY",
       "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
       "cameras": []
+    },
+    {
+      "id": "malang-city-cctv",
+      "operator": "Pemerintah Kota Malang · CCTV Publik",
+      "category": "city_cctv",
+      "province": "Jawa Timur",
+      "regency_city": "Kota Malang",
+      "portal_url": "https://cctv.malangkota.go.id/sebaran-cctv",
+      "additional_portal_url": null,
+      "declared_stream_format": "web_app_camera_player",
+      "claimed_status": "portal_public_listed",
+      "registry_verified_on": null,
+      "research_observation": "Official Kota Malang site has public 'Stream Camera' view and locality search. Individual media and coordinates not verified. Kota Batu and Kabupaten Malang remain research gaps.",
+      "provenance": "official_portal_web_review_2026_10_18",
+      "declared_camera_count": null,
+      "registered_camera_count": 0,
+      "coordinate_policy": "CAMERA_VERIFIED_ONLY",
+      "embedding_permission": "UNKNOWN",
+      "redistribution_permission": "UNKNOWN",
+      "no_capture_download": false,
+      "integration_status": "METADATA_ONLY",
+      "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
+      "cameras": [],
+      "priority_level": "P0",
+      "priority_tags": [
+        "P0_MALANG"
+      ]
+    },
+    {
+      "id": "surabaya-sits-app",
+      "operator": "Dinas Perhubungan Kota Surabaya · SITS CCTV",
+      "category": "city_cctv",
+      "province": "Jawa Timur",
+      "regency_city": "Kota Surabaya",
+      "portal_url": "https://surabaya.go.id/id/berita/25117/sits-dan-layanan-digital-terintegrasi-perkuat-transformasi-smart-city-surabaya",
+      "additional_portal_url": "https://play.google.com/store/apps/details?id=com.edishub.sitsdishubsurabaya",
+      "declared_stream_format": "official_mobile_app",
+      "claimed_status": "portal_public_listed",
+      "registry_verified_on": null,
+      "research_observation": "Pemkot reports >1,000 SITS traffic monitoring cameras, not >1,000 publicly embeddable feeds. Official Dishub SITS CCTV app provides traffic viewing; no public third-party API or streaming rights verified.",
+      "provenance": "official_portal_web_review_2026_10_18",
+      "declared_camera_count": null,
+      "registered_camera_count": 0,
+      "coordinate_policy": "CAMERA_VERIFIED_ONLY",
+      "embedding_permission": "UNKNOWN",
+      "redistribution_permission": "UNKNOWN",
+      "no_capture_download": false,
+      "integration_status": "METADATA_ONLY",
+      "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
+      "cameras": [],
+      "priority_level": "P0",
+      "priority_tags": [
+        "P0_SURABAYA"
+      ]
+    },
+    {
+      "id": "binamarga-nontol",
+      "operator": "Ditjen Bina Marga · Jalan Nasional Non-Tol",
+      "category": "national_road",
+      "province": "Nasional",
+      "regency_city": null,
+      "portal_url": "https://binamarga.pu.go.id/cctv-non-tol/",
+      "additional_portal_url": null,
+      "declared_stream_format": "official_portal",
+      "claimed_status": "portal_public_listed",
+      "registry_verified_on": null,
+      "research_observation": "Official non-toll highway CCTV catalog supplements toll coverage and must not be misclassified as a toll-road source.",
+      "provenance": "official_portal_web_review_2026_10_18",
+      "declared_camera_count": null,
+      "registered_camera_count": 0,
+      "coordinate_policy": "CAMERA_VERIFIED_ONLY",
+      "embedding_permission": "UNKNOWN",
+      "redistribution_permission": "UNKNOWN",
+      "no_capture_download": false,
+      "integration_status": "METADATA_ONLY",
+      "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
+      "cameras": [],
+      "priority_level": "P0",
+      "priority_tags": [
+        "P0_TOL"
+      ]
     }
   ],
   "discovery_backlog": [

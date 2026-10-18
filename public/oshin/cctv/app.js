@@ -5,8 +5,10 @@ const dom = {
   list: document.querySelector('#list'),
   metrics: document.querySelector('#metrics'),
   notice: document.querySelector('#notice'),
+  priorityButtons: [...document.querySelectorAll('[data-priority]')],
 };
 let registry;
+let priorityFilter = 'ALL';
 
 function element(tag, className, content) {
   const node = document.createElement(tag);
@@ -31,6 +33,24 @@ function officialLink(source) {
   return link;
 }
 
+function externalLink(value,label){
+  if(typeof value!=='string'||!value.startsWith('https://'))return null;
+  const a=element('a','link',label);
+  a.href=value;a.target='_blank';a.rel='noopener noreferrer';return a;
+}
+function corridorPanel(parent,source){
+  if(!Array.isArray(source.corridor_links)||!source.corridor_links.length)return;
+  const details=element('details','camera-details corridor-details');
+  details.append(element('summary','',source.corridor_links.length+' ruas resmi Bina Marga'));
+  const links=element('div','corridors');
+  for(const item of source.corridor_links){
+    if(item.url?.startsWith('https://binamarga.pu.go.id/contents/cctv_tol/?id_ruas=')){
+      const link=externalLink(item.url,item.label+' ↗');
+      if(link)links.append(link);
+    }
+  }
+  details.append(links);parent.append(details);
+}
 function cameraPanel(cameras) {
   const details = element('details', 'camera-details');
   const summary = element('summary', '', cameras.length + ' kamera terdaftar · lokasi presisi belum tersedia');
@@ -53,6 +73,7 @@ function sourceCard(source) {
   title.append(element('h3', '', source.operator));
   title.append(element('div', 'small muted', [source.regency_city, source.province].filter(Boolean).join(' · ')));
   head.append(title, element('span', 'pill', source.integration_status.replaceAll('_', ' ')));
+  if (source.priority_level === 'P0') card.classList.add('p0-source');
   card.append(head);
   const body = element('div', 'source-content');
   body.append(element('div', 'small muted', [source.declared_stream_format, source.category, source.provenance].filter(Boolean).join(' · ')));
@@ -63,6 +84,17 @@ function sourceCard(source) {
   body.append(element('p', 'small muted', permission));
   const link = officialLink(source);
   if (link) body.append(link);
+  if (source.additional_portal_url) {
+    const secondary=externalLink(source.additional_portal_url,'Buka aplikasi / kanal resmi ↗');
+    if(secondary)body.append(secondary);
+  }
+  if (source.official_related_url) {
+    const policy=externalLink(source.official_related_url,'Kebijakan operator ↗');
+    if(policy)body.append(policy);
+  }
+  corridorPanel(body,source);
+  if (source.named_location_examples?.length)
+    body.append(element('p','small muted','Contoh lokasi di katalog pemerintah: '+source.named_location_examples.join(', ')+'. Belum jadi pin peta.'));
   if (source.cameras.length) body.append(cameraPanel(source.cameras));
   card.append(body);
   return card;
@@ -81,16 +113,21 @@ function render() {
   const province = dom.province.value;
   const status = dom.status.value;
   const matched = registry.sources.filter((source) => {
+    if (priorityFilter !== 'ALL' && !source.priority_tags?.includes(priorityFilter)) return false;
     if (province && source.province !== province) return false;
     if (status && source.integration_status !== status) return false;
     if (!search) return true;
     const indexed = [
       source.operator, source.province, source.regency_city,
       source.category, source.portal_url,
+      ...(source.named_location_examples || []),
+      ...(source.route_examples || []),
+      ...(source.corridor_links || []).map(item=>item.label),
       ...source.cameras.map((camera) => camera.label),
     ].join(' ').toLocaleLowerCase('id-ID');
     return indexed.includes(search);
   });
+  matched.sort((a,b)=>Number(b.priority_level==='P0')-Number(a.priority_level==='P0')||a.operator.localeCompare(b.operator,'id'));
   dom.list.replaceChildren(...matched.map(sourceCard));
   dom.notice.textContent = matched.length + ' dari ' + registry.sources.length +
     ' sumber · setiap stream tetap memerlukan verifikasi playback dan izin penggunaan.';
@@ -116,6 +153,18 @@ async function load() {
       dom.province.append(option);
     }
     for (const control of [dom.search, dom.province, dom.status]) control.addEventListener('input', render);
+    for(const button of dom.priorityButtons){
+      button.addEventListener('click',()=>{
+        priorityFilter=button.dataset.priority;
+        for(const entry of dom.priorityButtons){
+          const active=entry===button;
+          entry.classList.toggle('selected',active);
+          entry.setAttribute('aria-pressed',String(active));
+        }
+        dom.province.value='';
+        render();
+      });
+    }
     render();
   } catch (error) {
     dom.notice.textContent = 'Gagal membaca katalog: ' + error.message;

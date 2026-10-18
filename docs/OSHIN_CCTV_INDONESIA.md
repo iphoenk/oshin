@@ -48,3 +48,18 @@ Relevant legal and operational sources include:
 6. Run CI, functional browser QA and live provider checks before merging or promoting a deployment. Maintain existing Vercel production until then.
 
 **Coverage note:** 22 candidate government/operator portals across a subset of Indonesia, not 22 cities, and nowhere near full national kabupaten/kota coverage. This is an auditable seed registry, not a nationwide completion claim.
+
+## P0 · Jakarta, Malang Raya, Surabaya, Tol (18 Oct 2026)
+
+Four dedicated OSHIN UI filters were added, and P0 sources appear first.
+`registry.json` now has 25 operator sources (7 P0) and 41 named Tasikmalaya
+cameras from the original upload. Eight distinct verified official Bina Marga
+toll-corridor landing links are attached under `binamarga-tol`.
+
+- **DKI**: https://jakcctv.jakarta.go.id/publik — site listing, not individually verified streaming.
+- **Kota Malang**: https://cctv.malangkota.go.id/sebaran-cctv — web camera list, not per-camera coordinates. Batu and Kabupaten Malang are pending.
+- **Surabaya**: https://surabaya.go.id/id/berita/25117/sits-dan-layanan-digital-terintegrasi-perkuat-transformasi-smart-city-surabaya and official SITS CCTV Android app. Public traffic monitoring existence does not grant rights to extract a proprietary API. Dishub footage-access policy: https://dishub.surabaya.go.id/portal/post/20250829131456
+- **Tol**: https://bpjt.pu.go.id/cctv/ and https://binamarga.pu.go.id/contents/cctv_tol (8 exact corridor deep links). Official BPJT FAQ https://bpjt.pu.go.id/faq/apakah-data-cctv-tersedia-di-bpjt/ permits public realtime *viewing*, not republishing or archive access.
+
+All records are metadata-only until per-feed permission, coordinates,
+and live data are independently verified. No unapproved stream proxy.

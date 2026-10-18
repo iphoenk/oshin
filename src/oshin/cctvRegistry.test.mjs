@@ -13,7 +13,7 @@ test('original upload stays auditable and source count is never inflated', () =>
   assert.equal(original.sources.length, 14);
   assert.equal(original.sources[0].camera_count, 45);
   assert.equal(original.sources[0].cameras.length, 41);
-  assert.equal(registry.sources.length, 22);
+  assert.equal(registry.sources.length, 25);
   assert.equal(registry.statistics.unique_named_cameras, 41);
   assert.equal(registry.statistics.claimed_tasikmalaya_count, 45);
   assert.equal(registry.statistics.listed_tasikmalaya_count, 41);
@@ -57,4 +57,24 @@ test('private-feed and breach allegations are not ingested as stream sources', (
   assert.ok(registry.sources.every((item) => !item.id.includes('leak')));
   assert.ok(registry.sources.every((item) => !item.id.includes('insecam')));
   assert.ok(registry.sources.every((item) => !item.id.includes('breach')));
+});
+
+test('P0 priority covers DKI Malang Surabaya and tolls without pretending live', () => {
+  const sources=registry.sources.filter(item=>item.priority_level==='P0');
+  assert.equal(sources.length,7);
+  for(const tag of ['P0_DKI','P0_MALANG','P0_SURABAYA','P0_TOL'])
+    assert.ok(sources.some(item=>item.priority_tags.includes(tag)),tag);
+  assert.equal(registry.sources.find(item=>item.id==='malang-city-cctv').portal_url,'https://cctv.malangkota.go.id/sebaran-cctv');
+  assert.equal(registry.sources.find(item=>item.id==='bpjt-tol').portal_url,'https://bpjt.pu.go.id/cctv/');
+  for(const item of sources){
+    assert.equal(item.embedding_permission,'UNKNOWN');
+    assert.equal(item.streaming_verification,'NOT_VERIFIED_BY_OSHIN');
+    assert.notEqual(item.integration_status,'READY');
+  }
+});
+test('eight highway pages are official outbound portal links, not media relay URLs', () => {
+  const routes=registry.sources.find(item=>item.id==='binamarga-tol').corridor_links;
+  assert.equal(routes.length,8);
+  for(const route of routes)
+    assert.match(route.url,/^https:\/\/binamarga\.pu\.go\.id\/contents\/cctv_tol\/\?id_ruas=[a-z0-9-]+$/);
 });
