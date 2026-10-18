@@ -1,4 +1,5 @@
 import { openSkyProxy } from './aircraft/opensky.js';
+import { bmkgIndonesiaProxy } from './indonesia/bmkg.js';
 import { celestrakProxy, rocketLaunchesProxy } from './space.js';
 import { tomtomProxy } from './traffic.js';
 import { firmsProxy } from './firms.js';
@@ -35,6 +36,7 @@ import { windProxy } from './wind.js';
 function localProviderPlugins({ realtime } = {}) {
   return [
     openSkyProxy(),
+    bmkgIndonesiaProxy(),
     celestrakProxy(),
     tomtomProxy(),
     firmsProxy(),
