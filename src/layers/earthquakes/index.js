@@ -30,9 +30,9 @@ export function createEarthquakesLayer({ source, overlayHost } = {}) {
 
   const layer = {
     id: 'earthquakes',
-    name: 'Earthquakes (24h)',
+    name: source?.label ? 'Earthquakes (BMKG bulletins)' : 'Earthquakes (24h)',
     icon: '🌋',
-    source: 'USGS',
+    source: source?.label || 'USGS',
     updateInterval: 60000,
 
     init(viewer) {
