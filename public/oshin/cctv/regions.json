@@ -1,7 +1,7 @@
 {
   "_schema": {
     "name": "OSHIN CCTV Indonesia National Coverage (mandatory municipality and regency master)",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "generated": "2026-10-18",
     "administrative_basis": "Kepmendagri No. 300.2.2-2138 Tahun 2025",
     "basis_reference": "https://peraturan.bpk.go.id/Details/322942/keputusan-mendagri-no-nomor-30022-2138-tahun",
@@ -17,9 +17,9 @@
     "autonomous_cities": 93,
     "administrative_cities": 5,
     "regencies": 416,
-    "cities_with_direct_candidate": 22,
+    "cities_with_direct_candidate": 25,
     "cities_with_provincial_candidate": 5,
-    "cities_without_mapped_source": 71,
+    "cities_without_mapped_source": 68,
     "verified_live_cameras": 0
   },
   "regions": [
@@ -1055,8 +1055,10 @@
       "province": "Sumatera Barat",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "cctv-padang"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
@@ -2321,8 +2323,10 @@
       "province": "Kepulauan Riau",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "batam-matanya"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
@@ -2783,7 +2787,7 @@
       "province": "Jawa Barat",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "HISTORICAL_SOURCE_ONLY",
+      "research_status": "SOURCE_CANDIDATE",
       "direct_source_ids": [
         "atcs-cirebon"
       ],
@@ -4014,8 +4018,10 @@
       "province": "Jawa Timur",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "cctv-madiun-city"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,

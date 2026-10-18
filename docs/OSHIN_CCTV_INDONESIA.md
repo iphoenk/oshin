@@ -146,3 +146,29 @@ HLS metadata plus 17 historical Pontianak YouTube viewing links.
   place *names only*. No inferred or city-centre pins appear on the globe.
 - Only outbound links to deliberately published government-facing
   information and watch pages have been added.
+
+## Addendum · Padang, Batam and Madiun; Magelang health contradictions
+
+- **Kota Padang:** https://padang.go.id/layanan/stream-cctv officially
+  links to https://streamcctv.padang.go.id/ with visible camera-map
+  locations. Some camera names refer to health facilities; their publication
+  scope must be checked individually to avoid unsafe redistribution.
+- **Kota Batam:** https://kominfo.batam.go.id/aplikasidiskominfobatam/
+  and https://batam.go.id/aplikasi/ list **Matanya Batam** as an
+  official CCTV service, but a public embeddable web stream has not been proven.
+- **Kota Madiun:** https://siopa.madiunkota.go.id/cctv currently says
+  `Belum Ada CCTV Aktif`; other `madiunkota.go.id` views say the camera
+  list failed to load. Keep as an explicit discovered portal with
+  **no operational feed accepted**.
+- **Kota Magelang:** The official
+  https://restreamer.magelangkota.go.id/index.html lists multiple streams
+  as LIVE, while https://cctv.magelangkota.go.id/ reports some
+  as `Stream offline`; sampled player pages also display
+  media-loading errors. Flag as **inconsistent operator health**, not
+  proof of live functionality.
+
+After this intake pass: **40 portal/source candidates; 25 cities with
+direct portal candidates; 5 DKI administrative city candidates via
+province only; 68 cities with no mapped source in OSHIN's index**.
+Coverage master still retains **all 514 jurisdictions** and all
+live playback verification counters remain 0 until actually tested.
