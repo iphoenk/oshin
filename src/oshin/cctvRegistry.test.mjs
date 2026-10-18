@@ -13,7 +13,7 @@ test('original upload stays auditable and source count is never inflated', () =>
   assert.equal(original.sources.length, 14);
   assert.equal(original.sources[0].camera_count, 45);
   assert.equal(original.sources[0].cameras.length, 41);
-  assert.equal(registry.sources.length, 40);
+  assert.equal(registry.sources.length, 43);
   assert.equal(registry.statistics.unique_named_cameras, 58);
   assert.equal(registry.statistics.claimed_tasikmalaya_count, 45);
   assert.equal(registry.statistics.listed_tasikmalaya_count, 41);
@@ -80,7 +80,7 @@ test('eight highway pages are official outbound portal links, not media relay UR
 });
 
 test('official source intake adds 12 operators without promoting unverified streams', () => {
- assert.equal(registry.statistics.added_official_sources_2026_10_19,15);
+ assert.equal(registry.statistics.added_official_sources_2026_10_19,18);
  assert.equal(registry.statistics.pontianak_public_youtube_view_links,17);
  for (const s of registry.sources.filter(x => x.evidence_collected_at === '2026-10-19')) {
    assert.equal(s.embedding_permission,'UNKNOWN');
@@ -117,4 +117,14 @@ test('Padang Batam Madiun and Magelang do not overstate playback readiness',()=>
  }
  assert.equal(registry.sources.find(s=>s.id==='cctv-madiun-city').claimed_status,'portal_says_no_active_cameras');
  assert.equal(registry.sources.find(s=>s.id==='magelang-restreamer').claimed_status,'official_stream_status_mixed');
+});
+
+test('Depok empty portal and Surakarta 96 publisher-side claims do not imply verified media',()=>{
+ const depok=registry.sources.find(s=>s.id==='cctv-depok-dishub');
+ const solo=registry.sources.find(s=>s.id==='surakarta-ccroom');
+ assert.equal(depok.declared_camera_count,0);
+ assert.equal(depok.claimed_status,'official_portal_currently_zero');
+ assert.equal(solo.declared_camera_count,96);
+ assert.equal(solo.streaming_verification,'NOT_VERIFIED_BY_OSHIN');
+ assert.equal(solo.embedding_permission,'UNKNOWN');
 });

@@ -1,7 +1,7 @@
 {
   "_schema": {
     "name": "OSHIN CCTV Indonesia National Coverage (mandatory municipality and regency master)",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "generated": "2026-10-18",
     "administrative_basis": "Kepmendagri No. 300.2.2-2138 Tahun 2025",
     "basis_reference": "https://peraturan.bpk.go.id/Details/322942/keputusan-mendagri-no-nomor-30022-2138-tahun",
@@ -17,9 +17,9 @@
     "autonomous_cities": 93,
     "administrative_cities": 5,
     "regencies": 416,
-    "cities_with_direct_candidate": 25,
+    "cities_with_direct_candidate": 28,
     "cities_with_provincial_candidate": 5,
-    "cities_without_mapped_source": 68,
+    "cities_without_mapped_source": 65,
     "verified_live_cameras": 0
   },
   "regions": [
@@ -2787,7 +2787,7 @@
       "province": "Jawa Barat",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "SOURCE_CANDIDATE",
+      "research_status": "HISTORICAL_SOURCE_ONLY",
       "direct_source_ids": [
         "atcs-cirebon"
       ],
@@ -2804,8 +2804,10 @@
       "province": "Jawa Barat",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "cctv-bekasi-city"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
@@ -2819,8 +2821,10 @@
       "province": "Jawa Barat",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "HISTORICAL_SOURCE_ONLY",
+      "direct_source_ids": [
+        "cctv-depok-dishub"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
@@ -3337,8 +3341,10 @@
       "province": "Jawa Tengah",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "surakarta-ccroom"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
@@ -4018,7 +4024,7 @@
       "province": "Jawa Timur",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "SOURCE_CANDIDATE",
+      "research_status": "HISTORICAL_SOURCE_ONLY",
       "direct_source_ids": [
         "cctv-madiun-city"
       ],
@@ -4058,7 +4064,15 @@
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
-      "streaming_permission": "NOT_ASSESSED"
+      "streaming_permission": "NOT_ASSESSED",
+      "research_leads": [
+        {
+          "type": "OFFICIAL_HISTORICAL_INFRASTRUCTURE_REPORT",
+          "source_url": "https://batukota.go.id/Portal/detail_b/3934",
+          "evidence_year": 2021,
+          "interpretation": "ETLE camera installation documented; no publicly authorized camera-view stream located"
+        }
+      ]
     },
     {
       "region_id": "3601",
@@ -4133,7 +4147,15 @@
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
-      "streaming_permission": "NOT_ASSESSED"
+      "streaming_permission": "NOT_ASSESSED",
+      "research_leads": [
+        {
+          "type": "GOVERNMENT_INTERNAL_MONITORING_NOT_PUBLIC_FEED",
+          "source_url": "https://diskominfo.tangerangkota.go.id/berita/kpk-kunjungi-tangerang-live-room-tinjau-pengelolaan-aduan-dan-layanan-digital-kota-tangerang",
+          "evidence_year": 2026,
+          "interpretation": "Tangerang Live Room internal CCTV monitoring reported, not evidence of a published viewer or embeddable stream"
+        }
+      ]
     },
     {
       "region_id": "3672",

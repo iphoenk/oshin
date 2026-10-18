@@ -172,3 +172,30 @@ direct portal candidates; 5 DKI administrative city candidates via
 province only; 68 cities with no mapped source in OSHIN's index**.
 Coverage master still retains **all 514 jurisdictions** and all
 live playback verification counters remain 0 until actually tested.
+
+## Follow-up discoveries: Bekasi, Surakarta and Depok
+
+- https://bekasikota.go.id/cctv — a public "Pantau Kota Bekasi"
+  viewer/selector. Indexed text says cameras are loading and no stream
+  is independently verified.
+- https://ccroom-dishub.surakarta.go.id/cctv — Dishub Surakarta
+  claims **96 active** CCTV and publishes named camera points.
+  Count is a portal claim only, not 96 OSHIN-validated live streams.
+- https://dishub.depok.go.id/cctv — official CCTV page shows **0
+  online / 0 offline / 0 listed** in the snapshot. This is an
+  exposed public viewer with **no confirmed active feeds**, not
+  proof Depok has no traffic cameras.
+- **Kota Batu:** https://batukota.go.id/Portal/detail_b/3934 officially
+  documents ETLE cameras historically; this is *not* a publicly
+  available traffic CCTV watching service, so the 514-region
+  registry carries it only as a research lead, not a camera source.
+- **Kota Tangerang:** https://diskominfo.tangerangkota.go.id/berita/kpk-kunjungi-tangerang-live-room-tinjau-pengelolaan-aduan-dan-layanan-digital-kota-tangerang
+  establishes internal CCTV monitoring at Tangerang Live Room but
+  not a deliberately published public viewing feed; recorded as
+  a research lead only.
+
+Totals: **43 source records** and **514/514 mandatory jurisdictions**.
+28 cities have directly matched portal/service candidates, five
+DKI cities a provincial-level candidate, 65 city source gaps.
+Only manually authorized and individually playback-verified media
+may be described as operational/live in OSHIN.
