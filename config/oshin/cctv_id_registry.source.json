@@ -1,0 +1,664 @@
+{
+  "_schema": {
+    "name": "OSHIN CCTV Indonesia registry",
+    "version": "0.1.0",
+    "generated": "2026-10-18",
+    "purpose": "Daftar sumber CCTV publik resmi Indonesia untuk layer OSHIN. Hanya feed instansi resmi (Dishub/ATCS, Kemenhub, PVMBG). Tidak memuat kamera privat/tak-diamankan.",
+    "line": "Setiap entri WAJIB punya official=true dan source (instansi). Feed yang provenance-nya tidak jelas tidak masuk.",
+    "status_values": {
+      "verified_live": "Di-fetch 2026-10-18, portal/stream merespons valid",
+      "robots_blocked": "Ada, tapi robots.txt memblok verifikasi otomatis dari server riset. Proxy OSHIN yang menarik 1 stream spesifik tetap bisa.",
+      "needs_probe": "Belum diverifikasi; butuh probe headless browser lokal",
+      "deprecated": "Dulu terbuka, sekarang hilang dari permukaan / kemungkinan butuh auth",
+      "dead": "404 / domain tidak merespons",
+      "app_only": "Hanya via aplikasi mobile, tidak ada endpoint web — JANGAN dipakai sebagai sumber API"
+    },
+    "stream_format_values": [
+      "hls_m3u8",
+      "hls_js_rendered",
+      "iframe_embed",
+      "rest_json",
+      "unknown"
+    ],
+    "discovery_method_values": {
+      "static_json": "Situs mengekspos daftar kamera dalam JSON — tinggal parse",
+      "js_render": "Daftar/URL dirender JavaScript — butuh headless browser untuk ekstrak",
+      "manual": "URL dicatat satu per satu manual",
+      "api": "Ada REST API resmi"
+    },
+    "integration_notes": {
+      "network": "Mayoritas HLS. Wajib proxy Edge/serverless untuk CORS + upgrade mixed-content (endpoint HTTP). Simpan key/akses di env, bukan bundle client.",
+      "computation": "Render sebagai titik peta (point layer). Decode HLS HANYA saat kamera diklik. Batasi sesi konkuren (ikuti pola upstream: ~2 sesi, 8 lease/sesi).",
+      "coordinates": "coord=null berarti belum di-geocode. JANGAN render titik tanpa coord valid. Geocode nama simpang via Nominatim/Photon saat build, verifikasi manual."
+    }
+  },
+  "sources": [
+    {
+      "id": "atcs-tasikmalaya",
+      "official": true,
+      "source": "Dishub Kota Tasikmalaya",
+      "category": "atcs_kota",
+      "province": "Jawa Barat",
+      "city": "Kota Tasikmalaya",
+      "city_center_approx": {
+        "lat": -7.3274,
+        "lon": 108.2207
+      },
+      "portal": "https://atcs.tasikmalayakota.go.id/",
+      "stream_format": "hls_m3u8",
+      "discovery_method": "static_json",
+      "status": "verified_live",
+      "verified_on": "2026-10-18",
+      "verification_note": "Portal hidup (© 2026). Stream jati.m3u8 mengembalikan MIME application/x-mpegURL (HLS valid). 45 kamera termeta.",
+      "camera_count": 45,
+      "https": true,
+      "stream_url_pattern": "https://atcs.tasikmalayakota.go.id/camera/{slug}.m3u8",
+      "cameras": [
+        {
+          "id": "15",
+          "nama": "Batas Kota Arah Bandung",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/bataskotaarahbandung.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "5",
+          "nama": "Simpang Wasita Kusuma Arah Bandung",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/wasitakusumaarahbandung.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "6",
+          "nama": "Simpang Wasita Kusuma Arah Bojong Jengkol",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/wasitakusumaarahbojongjengkol.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "7",
+          "nama": "Simpang Wasita Kusuma Arah Letnan Harun",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/wasitakusumaarahletnanharun.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "16",
+          "nama": "Simpang Bojong Jengkol Arah Wasita Kusuma",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/bojongjengkolarahwasita.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "17",
+          "nama": "Simpang Bojong Jengkol Arah Leuwidahu",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/bojongjengkolarahleuwidahu.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "18",
+          "nama": "Simpang Leuwidahu Arah Bojong Jengkol",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/leuwidahuarahjati.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "19",
+          "nama": "Simpang Leuwidahu Arah Jati",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/leuwidahuarahbojongjengkol.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "1",
+          "nama": "Simpang Jati",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/jati.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "4",
+          "nama": "Simpang Rancabango Arah Simpang Bantar",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/rancabangoptz.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "34",
+          "nama": "Simpang Rancabango Arah Jati",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/rancabangoarahjati.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "35",
+          "nama": "Simpang Rancabango Arah Letnan Harun",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/rancabangoarahletnanharun.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "20",
+          "nama": "Simpang Bantar",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/bantar.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "3",
+          "nama": "Simpang Mitra Batik",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/mitrabatik.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "8",
+          "nama": "Simpang Lima",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/simpanglima.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "25",
+          "nama": "Ruas M. Hatta",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/mhatta.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "9",
+          "nama": "Simpang Cimulu",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/cimulu.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "21",
+          "nama": "Simpang Dewi Sartika Arah Cimulu",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/dewisartikaarahcimulu.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "22",
+          "nama": "Simpang Dewi Sartika Arah Masjid Agung",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/dewisartikaarahmasjidagung.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "10",
+          "nama": "Simpang Masjid Agung",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/masjidagungptz.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "12",
+          "nama": "Simpang Masjid Agung Arah Gedung Dakwah",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/masjidagungarahgedungdakwah.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "13",
+          "nama": "Taman Kota (Batu Andesit) Arah HZ Mustofa",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/tamankota.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "23",
+          "nama": "Simpang Cihideung",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/cihideung.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "24",
+          "nama": "Simpang Nagarawangi",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/nagarawangi.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "11",
+          "nama": "Taman Alun Alun",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/alunalunptz.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "26",
+          "nama": "Simpang Alun-alun Arah Otista",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/alunalunarahotista.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "27",
+          "nama": "Simpang Alun-alun Arah Tentara Pelajar",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/alunalunarahtentarapelajar.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "28",
+          "nama": "Simpang Alun-alun Arah Sutisna Senjaya",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/alunalunarahsutsen.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "14",
+          "nama": "Simpang Sutisna Senjaya",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/sutisnasenjaya.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "29",
+          "nama": "Simpang Cibogor Arah Sutisna Senjaya",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/cibogorarahsutsen.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "30",
+          "nama": "Simpang Cibogor Arah M. Hatta",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/cibogorarahmhatta.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "31",
+          "nama": "Simpang Cibogor Arah Ciamis",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/cibogorarahciamis.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "32",
+          "nama": "Karang Resik",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/bataskotaciamis.m3u8",
+          "jalan_status": "Nasional",
+          "coord": null
+        },
+        {
+          "id": "33",
+          "nama": "Simpang Gunung Sabeulah",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/gunungsabeulah.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "39",
+          "nama": "Simpang Pataruman PTZ",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/patarumanptz.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "40",
+          "nama": "Simpang Pataruman FIX",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/patarumanarahnagarawangi.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "41",
+          "nama": "Simpang Panyerutan PTZ",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/panyerutanptz.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "42",
+          "nama": "Simpang Panyerutan FIX",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/panyerutanarahnagarawangi.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "43",
+          "nama": "Simpang Paseh",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/pasehptz.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "44",
+          "nama": "Simpang Padayungan",
+          "jenis": "FIX",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/padayunganarahkawalu.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        },
+        {
+          "id": "45",
+          "nama": "Simpang Rumah Sakit",
+          "jenis": "PTZ",
+          "link": "https://atcs.tasikmalayakota.go.id/camera/rumahsakit.m3u8",
+          "jalan_status": "Kota",
+          "coord": null
+        }
+      ]
+    },
+    {
+      "id": "atcs-denpasar",
+      "official": true,
+      "source": "Dishub Kota Denpasar",
+      "category": "atcs_kota",
+      "province": "Bali",
+      "city": "Kota Denpasar",
+      "city_center_approx": {
+        "lat": -8.6705,
+        "lon": 115.2126
+      },
+      "portal": "https://atcs.denpasarkota.go.id/",
+      "streaming_page": "https://atcs.denpasarkota.go.id/streaming",
+      "stream_format": "hls_js_rendered",
+      "discovery_method": "js_render",
+      "status": "verified_live",
+      "verified_on": "2026-10-18",
+      "verification_note": "Portal hidup (© 2025, 50+ kamera diklaim). Halaman /streaming memuat kamera via JavaScript — URL .m3u8 TIDAK terlihat di HTML statis. Butuh headless browser untuk ekstrak.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "rttmc-hubdat",
+      "official": true,
+      "source": "Ditjen Perhubungan Darat, Kemenhub (RTTMC)",
+      "category": "national",
+      "province": "Nasional",
+      "city": null,
+      "portal": "https://rttmc.dephub.go.id/rttmc/livecctv",
+      "stream_format": "unknown",
+      "discovery_method": "needs_probe",
+      "status": "robots_blocked",
+      "verified_on": "2026-10-18",
+      "verification_note": "Diblok robots.txt dari server riset. ~40 titik rawan macet nasional (Nagreg dll). Cek ulang via browser lokal.",
+      "camera_count": 40,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "atcs-bandung",
+      "official": true,
+      "source": "Dishub Kota Bandung",
+      "category": "atcs_kota",
+      "province": "Jawa Barat",
+      "city": "Kota Bandung",
+      "city_center_approx": {
+        "lat": -6.9175,
+        "lon": 107.6191
+      },
+      "portal": "https://atcs-dishub.bandung.go.id/",
+      "stream_format": "unknown",
+      "discovery_method": "needs_probe",
+      "status": "robots_blocked",
+      "verified_on": "2026-10-18",
+      "verification_note": "Diblok robots.txt. Salah satu ATCS terbesar, puluhan titik. Cek via browser lokal.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "atcs-semarang",
+      "official": true,
+      "source": "Dishub Kota Semarang",
+      "category": "atcs_kota",
+      "province": "Jawa Tengah",
+      "city": "Kota Semarang",
+      "city_center_approx": {
+        "lat": -6.9932,
+        "lon": 110.4203
+      },
+      "portal": "https://atcs.semarangkota.go.id/",
+      "stream_format": "unknown",
+      "discovery_method": "needs_probe",
+      "status": "robots_blocked",
+      "verified_on": "2026-10-18",
+      "verification_note": "Diblok robots.txt. Cek via browser lokal.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "atcs-surabaya",
+      "official": true,
+      "source": "Dishub Kota Surabaya",
+      "category": "atcs_kota",
+      "province": "Jawa Timur",
+      "city": "Kota Surabaya",
+      "city_center_approx": {
+        "lat": -7.2575,
+        "lon": 112.7521
+      },
+      "portal": "https://atcs.surabaya.go.id/",
+      "stream_format": "unknown",
+      "discovery_method": "needs_probe",
+      "status": "robots_blocked",
+      "verified_on": "2026-10-18",
+      "verification_note": "Diblok robots.txt. Domain alternatif mungkin sits/gis Surabaya. Cek via browser lokal.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "pantau-jogja",
+      "official": true,
+      "source": "Dishub DI Yogyakarta",
+      "category": "atcs_provinsi",
+      "province": "DI Yogyakarta",
+      "city": null,
+      "city_center_approx": {
+        "lat": -7.7956,
+        "lon": 110.3695
+      },
+      "portal": "https://pantau.jogjaprov.go.id/",
+      "stream_format": "unknown",
+      "discovery_method": "needs_probe",
+      "status": "robots_blocked",
+      "verified_on": "2026-10-18",
+      "verification_note": "Diblok robots.txt. Cek via browser lokal.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "bppktg-merapi",
+      "official": true,
+      "source": "BPPTKG / Badan Geologi (Gunung Merapi)",
+      "category": "volcano",
+      "province": "DI Yogyakarta / Jawa Tengah",
+      "city": null,
+      "city_center_approx": {
+        "lat": -7.5407,
+        "lon": 110.4457
+      },
+      "portal": "https://merapi.bgl.esdm.go.id/",
+      "youtube": "BPPTKG Channel (live seismik + visual)",
+      "stream_format": "hls_js_rendered",
+      "discovery_method": "needs_probe",
+      "status": "needs_probe",
+      "verified_on": "2026-10-18",
+      "verification_note": "CCTV resmi Merapi + YouTube live. Beberapa titik visual puncak. Pola URL perlu diprobe.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "magma-pvmbg",
+      "official": true,
+      "source": "PVMBG / Badan Geologi, ESDM (MAGMA Indonesia)",
+      "category": "volcano",
+      "province": "Nasional",
+      "city": null,
+      "portal": "https://magma.esdm.go.id/",
+      "stream_format": "unknown",
+      "discovery_method": "api",
+      "status": "robots_blocked",
+      "verified_on": "2026-10-18",
+      "verification_note": "Diblok robots.txt dari server riset. MAGMA punya API publik (status gunung, VONA, gempa). Sebagian pos punya webcam, tidak semua stream terbuka. Lebih cocok sebagai layer status gunung daripada CCTV.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "bpjt-tol",
+      "official": true,
+      "source": "Badan Pengatur Jalan Tol (BPJT), Kemen PU",
+      "category": "toll",
+      "province": "Nasional",
+      "city": null,
+      "portal": "https://bpjt.pu.go.id/cctv/cctv_inframe",
+      "stream_format": "iframe_embed",
+      "discovery_method": "needs_probe",
+      "status": "needs_probe",
+      "verified_on": "2026-10-18",
+      "verification_note": "CCTV ruas tol via iframe. Perlu probe untuk ekstrak daftar ruas + URL stream.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "binamarga-tol",
+      "official": true,
+      "source": "Ditjen Bina Marga, Kemen PU",
+      "category": "toll",
+      "province": "Nasional",
+      "city": null,
+      "portal": "https://binamarga.pu.go.id/contents/cctv",
+      "stream_format": "iframe_embed",
+      "discovery_method": "needs_probe",
+      "status": "needs_probe",
+      "verified_on": "2026-10-18",
+      "verification_note": "CCTV tol + non-tol via embed. Perlu probe.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "jakarta-smartcity",
+      "official": true,
+      "source": "Jakarta Smart City / Diskominfotik DKI (CCTV Bali Tower)",
+      "category": "city_cctv",
+      "province": "DKI Jakarta",
+      "city": "DKI Jakarta",
+      "city_center_approx": {
+        "lat": -6.2088,
+        "lon": 106.8456
+      },
+      "portal": "https://smartcity.jakarta.go.id/",
+      "legacy_api": "http://api.jakarta.go.id (era 2016-2020)",
+      "stream_format": "rest_json",
+      "discovery_method": "api",
+      "status": "deprecated",
+      "verified_on": "2026-10-18",
+      "verification_note": "Portal hidup (Okt 2026) TAPI peta CCTV publik & endpoint API JSON terbuka tidak lagi tampil — portal kini berorientasi super-app JAKI. API ~2000 kamera era lama kemungkinan ditutup/butuh auth. JANGAN diandalkan tanpa konfirmasi ulang.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    },
+    {
+      "id": "jasamarga-travoy",
+      "official": true,
+      "source": "PT Jasa Marga (Travoy)",
+      "category": "toll",
+      "province": "Nasional",
+      "city": null,
+      "portal": "Aplikasi Travoy (Android/iOS)",
+      "stream_format": "unknown",
+      "discovery_method": null,
+      "status": "app_only",
+      "verified_on": "2026-10-18",
+      "verification_note": "TIDAK ADA endpoint web publik. Hanya via app Travoy. Dicatat untuk kelengkapan — JANGAN masukkan ke rencana sebagai sumber API.",
+      "camera_count": null,
+      "https": null,
+      "cameras": []
+    },
+    {
+      "id": "atcs-cirebon",
+      "official": true,
+      "source": "Dishub Kota Cirebon",
+      "category": "atcs_kota",
+      "province": "Jawa Barat",
+      "city": "Kota Cirebon",
+      "city_center_approx": {
+        "lat": -6.732,
+        "lon": 108.5523
+      },
+      "portal": "https://atcs.cirebonkota.go.id/",
+      "stream_format": "unknown",
+      "discovery_method": "needs_probe",
+      "status": "dead",
+      "verified_on": "2026-10-18",
+      "verification_note": "Domain ini 404. Cirebon mungkin pindah domain (atcs-dishub / sub-path lain). Perlu cari ulang.",
+      "camera_count": null,
+      "https": true,
+      "cameras": []
+    }
+  ],
+  "discovery_backlog": {
+    "note": "Kota/kabupaten lain yang disebut punya ATCS tapi belum di-probe. Pola domain tidak seragam — probe satu per satu.",
+    "candidates": [
+      "Kota Padang",
+      "Kota Pekanbaru",
+      "Kota Bekasi",
+      "Kota Bogor",
+      "Kota Depok",
+      "Kota Batam",
+      "Kota Makassar",
+      "Kota Medan",
+      "Kota Malang",
+      "Kabupaten Bandung (Nagreg)",
+      "Kota Solo/Surakarta",
+      "Kota Balikpapan",
+      "Kota Samarinda",
+      "Kota Palembang"
+    ],
+    "method": "Jalankan scripts/probe-atcs.mjs (headless) lokal: coba pola {atcs,atcs-dishub,pantau,cctv}.{kota}.go.id, catat yang hidup + ekstrak URL stream yang dirender JS."
+  }
+}

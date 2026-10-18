@@ -1,0 +1,50 @@
+# OSHIN · CCTV PUBLIC INDONESIA INTAKE · 18 October 2026
+
+This data module aggregates **public governmental CCTV source metadata** in Indonesia into the OSHIN fork. It is not a camera exploitation dataset and is not a comprehensive inventory of all municipalities.
+
+## Inputs
+
+1. Uploaded `cctv_id_registry(1).json` v0.1.0 (14 listed sources; 41 named Tasikmalaya cameras; source claims 45, a 4-camera discrepancy).
+2. Prior OSHIN source research: DKI Jakarta public CCTV, Bogor, Banyumas, Denpasar, BPJT, Kediri.
+3. User-supplied independent camera leak/insider-misuse threat research: adds public-by-design reference portals in Bandung and Medan, and motivates the privacy gates below. The threat incidents and private footage are **not** imported as camera feeds.
+4. Official portal web checks on 2026-10-18: [Jakarta](https://jakcctv.jakarta.go.id/publik), [Bogor City](https://bsw.kotabogor.go.id/cctv), [Bogor Regency](https://itscctv-dishub.bogorkab.go.id/), [Banyumas](https://atcs.banyumaskab.go.id/), [Kediri](https://dishub.kedirikota.go.id/live-streaming-atcs/), [Magelang](https://restreamer.magelangkota.go.id/index.html).
+
+## Artifacts
+
+- `config/oshin/cctv_id_registry.source.json`: byte-for-byte-semantic JSON representation of the user-provided registry. Unverified notes are assertions from the upload, not OSHIN observations.
+- `public/oshin/cctv/registry.json`: normalized 22-source registry of portal metadata and 41 named camera records with provenance and permissions.
+- `public/oshin/cctv/index.html`: public metadata directory; a shortcut from the application's original root page.
+- `src/oshin/cctvRegistry.test.mjs`: validation pins for source IDs, URL schemes, coordinates, and permission gates.
+
+## Critical integrity rules
+
+- A portal or single HLS manifest returning HTTP 200 is **not** proof that every feed is running.
+- Uploaded `verified_live` statuses are carried in `claimed_status`; **all** records use `streaming_verification=NOT_VERIFIED_BY_OSHIN` until actual operator-authorized playback verification.
+- No invented pins: city_center_approx is NOT a camera position. All 41 named cameras currently have `location=null` and `geolocation_verified=false`. Globe layer should not import such entries as spatial camera points.
+- None of these operator portals has yet granted OSHIN an explicit redistribution license. Accordingly `integration_status=METADATA_ONLY` and no live media endpoint is auto-proxied.
+- **Banyumas**: the official ATCS page says, *Dilarang mengunduh dan meng-capture video live streaming yang ada di website ini.* OSHIN only links out; do not download/capture/redistribute this media.
+- `robots_blocked` is a discovery barrier, not permission to circumvent robots restrictions using another proxy.
+- No brute-force, Shodan-wide sweeps, leaked credentials, private camera feeds, passwordless device indexes, or endpoint guessing.
+- Claims about breach/compromise from social media or threat reporting are not verified facts.
+
+## Privacy / threat report (non-operational)
+
+The user-supplied research found four Indonesia cases described in public reporting: Starbucks Sunter (2020, insider misuse), a 2020 Jakarta covert-camera criminal investigation, Pekalongan school covert-camera/leak allegations (2026), and a **disputed, unconfirmed** Medan municipal CCTV compromise claim (2026). Do not collect or publish private footage, victim identities, IP addresses, tokens, or direct links to leaked materials. Even deliberately public government camera viewing is **not** evidence of a security breach, and does not grant recording rights.
+
+Relevant legal and operational sources include:
+
+- Indonesia [Personal Data Protection Act (UU 27/2022)](https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022)
+- [ITE Amendment 2024](https://peraturan.bpk.go.id/Details/274494/uu-no-1-tahun-2024)
+- [Sexual Violence Law (UU 12/2022)](https://peraturan.bpk.go.id/Details/207944/uu-no-12-tahun-2022)
+- [Yogyakarta CCTV recordings application process](https://dinkominfosan.jogjakota.go.id/page/index/prosedur-permintaan-rekaman-cctv-pemerintah-kota-yogyakarta)
+
+## Next phases before enabling a live map layer
+
+1. Obtain explicit operator permissions for embedding, transcoding, proxying and redistributing each live feed.
+2. Check the official source for current camera lists; reconcile 45 asserted vs 41 listed Tasikmalaya.
+3. Verify per-camera geographic coordinates and publication intent via trusted operator location metadata.
+4. Test each authorized HLS/YouTube/iframe feed independently, with timestamps, playback health, source attribution and sensible throttling.
+5. Build integration pack with allowlisted government public origins and isolated proxy. Never silently substitute unrelated synthetic footage.
+6. Run CI, functional browser QA and live provider checks before merging or promoting a deployment. Maintain existing Vercel production until then.
+
+**Coverage note:** 22 candidate government/operator portals across a subset of Indonesia, not 22 cities, and nowhere near full national kabupaten/kota coverage. This is an auditable seed registry, not a nationwide completion claim.
