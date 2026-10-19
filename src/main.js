@@ -12,7 +12,9 @@ const started = application.start();
 started.then(async ({ scene }) => {
   try {
     const { installOshinCctvGlobe } = await import('./oshin/cctvGlobe.js');
-    const disposeCctvGlobe = await installOshinCctvGlobe({ viewer: scene.viewer });
+    const disposeCctvGlobe = await installOshinCctvGlobe({
+      viewer: scene.viewer,
+    });
     const unsubscribe = application.subscribe((state) => {
       if (state.status === 'destroying' || state.status === 'destroyed') {
         unsubscribe();
