@@ -1,7 +1,9 @@
 /** Only a real upstream frame can be displayed as a last CCTV snapshot. */
 export function canShowRealSnapshotOnHover(camera) {
   if (!camera || !camera.feedConfigured) return false;
-  const kind = String(camera.feedType || '').trim().toLowerCase();
+  const kind = String(camera.feedType || '')
+    .trim()
+    .toLowerCase();
   if (['hls', 'rtmp', 'video', 'mp4', 'mjpeg', 'dash'].includes(kind))
     return camera.snapshotAvailable === true;
   return true;

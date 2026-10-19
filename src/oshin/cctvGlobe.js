@@ -263,7 +263,11 @@ export async function installOshinCctvGlobe({
       hoveredReferenceId = feature.id;
       hoverBubble.replaceChildren(
         node('strong', '', feature.label),
-        node('span', '', 'Snapshot belum tersedia · lokasi/sumber belum terverifikasi sebagai kamera live.'),
+        node(
+          'span',
+          '',
+          'Snapshot belum tersedia · lokasi/sumber belum terverifikasi sebagai kamera live.',
+        ),
       );
     }
     hoverBubble.hidden = false;

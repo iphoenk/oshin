@@ -331,7 +331,9 @@ export function createCards({ state: layerState, services, parts, source }) {
     image.onload = () => settle(true);
     image.onerror = () => settle(false);
     const frameUrl = parts.frames.frameUrlFor(record.camera, refreshMs);
-    const requestedUrl = genuineOnly ? realSnapshotFrameUrl(frameUrl) : frameUrl;
+    const requestedUrl = genuineOnly
+      ? realSnapshotFrameUrl(frameUrl)
+      : frameUrl;
     if (!requestedUrl) {
       settle(false);
       return;
