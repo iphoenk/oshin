@@ -524,6 +524,16 @@ export function cctvProxy({ sourceRoot = process.cwd() } = {}) {
           return;
         }
 
+        // A last-snapshot request must not fall through to Street View or SVG.
+        if (url.searchParams.get('genuine') === '1') {
+          res.writeHead(204, {
+            'Cache-Control': 'no-store',
+            'X-CCTV-Source': 'unavailable',
+          });
+          res.end();
+          return;
+        }
+
         const sv = await streetViewFallback({
           lat,
           lon,
