@@ -1,9 +1,15 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="theme-color" content="#0a1421"/>
+  <script>
+    // Set the saved palette before styles load to avoid a wrong-theme flash.
+    try { const selected = localStorage.getItem("oshin-cctv-theme");
+      if (selected === "light" || selected === "dark") document.documentElement.dataset.theme = selected;
+    } catch { /* private browsing may disable storage */ }
+  </script>
   <meta name="description" content="OSHIN CCTV 5K+ · Akses direktori CCTV nasional pihak ketiga dan audit jumlah kamera yang diklaim."/>
   <title>OSHIN · CCTV 5K+ Direktori</title>
   <link rel="stylesheet" href="./aggregators.css"/>
@@ -11,7 +17,10 @@
 <body>
   <header class="header">
     <a href="/" class="brand"><span class="mark">◉</span> OSHIN <span class="lite">/ CCTV 5K+</span></a>
-    <a class="back" href="./">← Katalog resmi OSHIN</a>
+    <div class="header-actions">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Ubah ke mode terang" aria-pressed="true">☀ Mode terang</button>
+      <a class="back" href="./">← Katalog resmi OSHIN</a>
+    </div>
   </header>
   <main>
     <div class="eyebrow">EXTERNAL CCTV SOURCE INDEX · AUDITED</div>

@@ -1,3 +1,21 @@
+const themeButton = document.querySelector('#theme-toggle');
+const THEME_KEY = 'oshin-cctv-theme';
+function applyTheme(theme) {
+ const actual=theme==='light'?'light':'dark';
+ document.documentElement.dataset.theme=actual;
+ themeButton.setAttribute('aria-pressed',String(actual==='dark'));
+ themeButton.setAttribute('aria-label',actual==='dark'?'Ubah ke mode terang':'Ubah ke mode gelap');
+ themeButton.textContent=actual==='dark'?'☀ Mode terang':'☾ Mode gelap';
+ const color=document.querySelector('meta[name="theme-color"]');
+ if(color)color.setAttribute('content',actual==='dark'?'#0a1421':'#f2f6f9');
+}
+applyTheme(document.documentElement.dataset.theme);
+themeButton.addEventListener('click',()=>{
+ const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
+ applyTheme(next);
+ try { localStorage.setItem(THEME_KEY,next); } catch { /* optional preference */ }
+});
+
 const dom={
  status:document.querySelector('#status'),
  summary:document.querySelector('#summary'),

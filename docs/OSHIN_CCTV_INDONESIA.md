@@ -322,3 +322,20 @@ overlay, a screen-space mouseover explicitly states snapshot unavailable.
 Click opens source metadata, not fake live video. The Vercel static
 preview still requires deployment of `/api/cctv/*` before operational
 camera snapshot/live functionality can work.
+
+## OSHIN default: God's Eye View original, centered on Indonesia (19 Oct 2026)
+
+- Restore root `index.html` and `src/main.js` to the upstream-style
+  God's Eye View startup: no compulsory CCTV globe overlay, no floating
+  CCTV shortcut obscuring the original app. Existing OSHIN CCTV metadata
+  catalog remains available directly under `/oshin/cctv/`.
+- With no explicit share-link camera state, default intro now uses
+  `flyToIndonesia()`, centered approximately **2.55°S 118°E** with a
+  **7,500 km** Indonesia-archipelago overview. Austin remains available as
+  an optional preset.
+- Existing valid user-shared URL hash positions intentionally retain
+  priority. To see the new Indonesia landing, open the bare root URL
+  without a `#lat=...&lon=...` fragment.
+- Aggregators page `/oshin/cctv/aggregators.html` adds a visible
+  Dark/Light theme toggle, dark as default, saved locally where browser
+  storage is available, and safe to use without storage access.

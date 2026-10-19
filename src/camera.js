@@ -2,9 +2,17 @@ import * as Cesium from 'cesium';
 
 /**
  * Camera presets for notable locations.
- * Phase 1 default: fly to Austin, TX on load.
+ * Preserve the original place presets; OSHIN launches over Indonesia.
  */
 export const CAMERA_PRESETS = {
+  indonesia: {
+    destination: Cesium.Cartesian3.fromDegrees(118, -2.55, 7500000),
+    orientation: {
+      heading: Cesium.Math.toRadians(0),
+      pitch: Cesium.Math.toRadians(-90),
+      roll: 0.0,
+    },
+  },
   austin: {
     destination: Cesium.Cartesian3.fromDegrees(-97.7431, 30.2672, 800),
     orientation: {
@@ -71,6 +79,38 @@ export function flyToAustin(viewer) {
         pitch: Cesium.Math.toRadians(-30),
         roll: 0.0,
       },
+      duration: 4.0,
+      easingFunction: Cesium.EasingFunction.CUBIC_IN_OUT,
+    });
+  }, 500);
+  return () => {
+    clearTimeout(timer);
+    if (!viewer.isDestroyed()) viewer.camera.cancelFlight();
+  };
+}
+
+/**
+ * OSHIN default, the unmodified God's Eye View UI with an Indonesia-centered
+ * arrival. Geographic overview, not a made-up individual CCTV camera pin.
+ *
+ * Only invoked when there is no valid share-view hash. Explicit share links
+ * and later user navigation take priority over this cancellable intro flight.
+ * @returns {Function} Stops a pending or active startup flight.
+ */
+export function flyToIndonesia(viewer) {
+  viewer.camera.setView({
+    destination: Cesium.Cartesian3.fromDegrees(118, -2.55, 15000000),
+    orientation: {
+      heading: Cesium.Math.toRadians(0),
+      pitch: Cesium.Math.toRadians(-90),
+      roll: 0.0,
+    },
+  });
+  const timer = setTimeout(() => {
+    if (viewer.isDestroyed()) return;
+    viewer.camera.flyTo({
+      destination: CAMERA_PRESETS.indonesia.destination,
+      orientation: CAMERA_PRESETS.indonesia.orientation,
       duration: 4.0,
       easingFunction: Cesium.EasingFunction.CUBIC_IN_OUT,
     });
