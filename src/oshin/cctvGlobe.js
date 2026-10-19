@@ -13,7 +13,11 @@ function node(tag, className, value) {
  * An optional non-camera SOURCE/RESEARCH overlay on the existing Cesium globe.
  * It never participates in the operational CCTV layer, video proxy, or stream catalog.
  */
-export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal } = {}) {
+export async function installOshinCctvGlobe({
+  viewer,
+  fetchImpl = fetch,
+  signal,
+} = {}) {
   if (!viewer?.dataSources || !viewer?.scene || !viewer?.camera) {
     throw new TypeError('Cesium viewer required');
   }
@@ -21,11 +25,14 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
     cache: 'no-store',
     signal,
   });
-  if (!response.ok) throw new Error('CCTV globe metadata HTTP ' + response.status);
+  if (!response.ok)
+    throw new Error('CCTV globe metadata HTTP ' + response.status);
   const features = makeGlobeOverlayFeatures(await response.json());
   if (signal?.aborted) return () => {};
 
-  const source = new Cesium.CustomDataSource('OSHIN · CCTV source and research references');
+  const source = new Cesium.CustomDataSource(
+    'OSHIN · CCTV source and research references',
+  );
   const entityIndex = new Map();
   const siteEntities = [];
   const palette = {
@@ -38,7 +45,11 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
       id: 'oshin-reference-' + feature.id,
       name: feature.label,
       show: hub,
-      position: Cesium.Cartesian3.fromDegrees(feature.lon, feature.lat, hub ? 4000 : 2000),
+      position: Cesium.Cartesian3.fromDegrees(
+        feature.lon,
+        feature.lat,
+        hub ? 4000 : 2000,
+      ),
       point: {
         pixelSize: hub ? 15 : 9,
         color: palette[feature.mode],
@@ -48,14 +59,18 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
       },
       label: hub
         ? {
-            text: feature.id === 'national' ? 'CCTV 5K+ · SUMBER' : feature.label,
+            text:
+              feature.id === 'national' ? 'CCTV 5K+ · SUMBER' : feature.label,
             font: '600 12px Inter, sans-serif',
             fillColor: palette[feature.mode],
             outlineColor: Cesium.Color.BLACK,
             outlineWidth: 3,
             style: Cesium.LabelStyle.FILL_AND_OUTLINE,
             pixelOffset: new Cesium.Cartesian2(0, -23),
-            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 9000000),
+            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
+              0,
+              9000000,
+            ),
           }
         : undefined,
     });
@@ -71,7 +86,10 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
   toggle.id = 'oshin-cctv-globe-toggle';
   toggle.type = 'button';
   toggle.setAttribute('aria-expanded', 'false');
-  toggle.setAttribute('aria-label', 'Buka kontrol CCTV sumber dan riset di globe');
+  toggle.setAttribute(
+    'aria-label',
+    'Buka kontrol CCTV sumber dan riset di globe',
+  );
   const panel = node('aside');
   panel.id = 'oshin-cctv-globe-panel';
   panel.hidden = true;
@@ -84,11 +102,19 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
   head.append(heading, close);
   panel.append(
     head,
-    node('p', 'cg-sub', 'Layer aktif: hub katalog, bukan 5.344 pin kamera. Titik lokasi oranye hanya kandidat penelitian dan belum terbukti live.'),
+    node(
+      'p',
+      'cg-sub',
+      'Layer aktif: hub katalog, bukan 5.344 pin kamera. Titik lokasi oranye hanya kandidat penelitian dan belum terbukti live.',
+    ),
   );
   const tabs = node('div', 'cg-tabs');
   const hubsButton = node('button', '', features.hubs.length + ' hub sumber');
-  const sitesButton = node('button', '', features.sites.length + ' lokasi usulan');
+  const sitesButton = node(
+    'button',
+    '',
+    features.sites.length + ' lokasi usulan',
+  );
   for (const item of [hubsButton, sitesButton]) item.type = 'button';
   tabs.append(hubsButton, sitesButton);
   panel.append(tabs);
@@ -104,7 +130,11 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
   panel.append(list);
   const details = node('div', 'cg-details');
   panel.append(details);
-  const footer = node('p', 'cg-footer', 'Klaim agregator: 5.344 (Gemini), indeks sumber: 5.078. Kamera individual terverifikasi pada layer ini: 0. ');
+  const footer = node(
+    'p',
+    'cg-footer',
+    'Klaim agregator: 5.344 (Gemini), indeks sumber: 5.078. Kamera individual terverifikasi pada layer ini: 0. ',
+  );
   const catalogue = node('a', '', 'Buka direktori 5K+ ↗');
   catalogue.href = '/oshin/cctv/aggregators.html';
   footer.append(catalogue);
@@ -118,11 +148,26 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
   }
   function showDetails(feature) {
     details.replaceChildren(node('strong', '', feature.label));
-    details.append(node('p', '', feature.mode === 'hub'
-      ? 'Hub direktori publik, bukan CCTV fisik.'
-      : 'Titik area publik usulan Gemini, bukan lokasi kamera terverifikasi.'));
+    details.append(
+      node(
+        'p',
+        '',
+        feature.mode === 'hub'
+          ? 'Hub direktori publik, bukan CCTV fisik.'
+          : 'Titik area publik usulan Gemini, bukan lokasi kamera terverifikasi.',
+      ),
+    );
     details.append(node('p', '', feature.observation));
-    if (feature.claimed != null) details.append(node('p', '', 'Klaim jumlah sumber: ' + feature.claimed + ' (belum diverifikasi OSHIN)'));
+    if (feature.claimed != null)
+      details.append(
+        node(
+          'p',
+          '',
+          'Klaim jumlah sumber: ' +
+            feature.claimed +
+            ' (belum diverifikasi OSHIN)',
+        ),
+      );
     const link = node('a', '', 'Buka portal sumber ↗');
     link.href = feature.url;
     link.target = '_blank';
@@ -147,16 +192,26 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
           destination: Cesium.Cartesian3.fromDegrees(
             feature.lon,
             feature.lat,
-            mode === 'hub' && feature.id === 'national' ? 6000000 : mode === 'hub' ? 200000 : 25000,
+            mode === 'hub' && feature.id === 'national'
+              ? 6000000
+              : mode === 'hub'
+                ? 200000
+                : 25000,
           ),
           duration: 1.3,
         });
       });
       list.append(row);
     }
-    details.replaceChildren(node('p', '', mode === 'hub'
-      ? 'Pilih hub untuk membuka portal sumber; angka regional bukan hasil audit live.'
-      : 'Pilih lokasi publik usulan. Koordinat belum diperiksa terhadap posisi kamera aktual.'));
+    details.replaceChildren(
+      node(
+        'p',
+        '',
+        mode === 'hub'
+          ? 'Pilih hub untuk membuka portal sumber; angka regional bukan hasil audit live.'
+          : 'Pilih lokasi publik usulan. Koordinat belum diperiksa terhadap posisi kamera aktual.',
+      ),
+    );
     requestFrame();
   }
   function togglePanel() {
@@ -176,12 +231,14 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
     if (enabled) setMode(mode);
     requestFrame();
   });
-  focus.addEventListener('click', () => viewer.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(118.0149, -2.5489, 6500000),
-    duration: 1.5,
-  }));
+  focus.addEventListener('click', () =>
+    viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(118.0149, -2.5489, 6500000),
+      duration: 1.5,
+    }),
+  );
   const handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
-  handler.setInputAction(movement => {
+  handler.setInputAction((movement) => {
     if (!enabled || viewer.isDestroyed()) return;
     const picked = viewer.scene.pick(movement.position);
     const id = picked?.id?.id;
