@@ -102,6 +102,7 @@ function sourceCard(source) {
     const policy=externalLink(source.official_related_url,'Kebijakan operator ↗');
     if(policy)body.append(policy);
   }
+  if(source.media_rights_note)body.append(element('p','small muted','Ketentuan operator: '+source.media_rights_note));
   corridorPanel(body,source);
   if (source.named_location_examples?.length)
     body.append(element('p','small muted','Contoh lokasi di katalog pemerintah: '+source.named_location_examples.join(', ')+'. Belum jadi pin peta.'));

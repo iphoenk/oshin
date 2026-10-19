@@ -199,3 +199,17 @@ Totals: **43 source records** and **514/514 mandatory jurisdictions**.
 DKI cities a provincial-level candidate, 65 city source gaps.
 Only manually authorized and individually playback-verified media
 may be described as operational/live in OSHIN.
+
+## Gemini audit import · 19 October 2026
+
+Gemini's submitted dataset was **triaged, not copied**. See
+`docs/OSHIN_GEMINI_CCTV_IMPORT_AUDIT.md` for accepted official sources,
+rejected exposed/unauthorized camera feeds, unverifiable counts,
+coordinate-accuracy caveats and Cesium/Vite compatibility.
+Six confirmed additional government source records bring OSHIN to
+**49 catalog sources**, with **29 directly source-mapped cities**,
+5 DKI cities having province-scoped candidate portals and
+**64 cities still awaiting discovery**. The master remains **514 regions**.
+All new records are metadata-only; no live media or coordinates were
+promoted. Jepara operator's attribution and noncommercial restrictions
+are retained on the catalog card.

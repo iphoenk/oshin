@@ -1,14 +1,15 @@
 {
   "_schema": {
     "name": "OSHIN CCTV Indonesia National Coverage (mandatory municipality and regency master)",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "generated": "2026-10-18",
     "administrative_basis": "Kepmendagri No. 300.2.2-2138 Tahun 2025",
     "basis_reference": "https://peraturan.bpk.go.id/Details/322942/keputusan-mendagri-no-nomor-30022-2138-tahun",
     "normalized_data_source": "https://github.com/awanaprilino/wilayah-administrasi-kemendagri",
     "note": "All cities and regencies are listed, including places where no public camera portal is mapped yet. NO_SOURCE_MAPPED does not mean a city has no CCTV. Province-level sources do not establish camera locations within DKI's individual cities.",
     "research_update": "2026-10-19",
-    "summary_note": "All 514 regions required; direct source candidate does not imply official playback or permission."
+    "summary_note": "All 514 regions required; direct source candidate does not imply official playback or permission.",
+    "last_source_audit": "2026-10-19"
   },
   "stats": {
     "provinces": 38,
@@ -17,9 +18,9 @@
     "autonomous_cities": 93,
     "administrative_cities": 5,
     "regencies": 416,
-    "cities_with_direct_candidate": 28,
+    "cities_with_direct_candidate": 29,
     "cities_with_provincial_candidate": 5,
-    "cities_without_mapped_source": 65,
+    "cities_without_mapped_source": 64,
     "verified_live_cameras": 0
   },
   "regions": [
@@ -2772,7 +2773,8 @@
       "research_status": "SOURCE_CANDIDATE",
       "direct_source_ids": [
         "atcs-bandung",
-        "pelindung-bandung"
+        "pelindung-bandung",
+        "bandung-arimbi-official"
       ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
@@ -2787,7 +2789,7 @@
       "province": "Jawa Barat",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "HISTORICAL_SOURCE_ONLY",
+      "research_status": "SOURCE_CANDIDATE",
       "direct_source_ids": [
         "atcs-cirebon"
       ],
@@ -2821,7 +2823,7 @@
       "province": "Jawa Barat",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "HISTORICAL_SOURCE_ONLY",
+      "research_status": "SOURCE_CANDIDATE",
       "direct_source_ids": [
         "cctv-depok-dishub"
       ],
@@ -3099,8 +3101,10 @@
       "province": "Jawa Tengah",
       "kind": "REGENCY",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "grobogan-atcs-official"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
@@ -3174,8 +3178,10 @@
       "province": "Jawa Tengah",
       "kind": "REGENCY",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "jepara-samudra-official"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
@@ -3375,7 +3381,9 @@
       "required": true,
       "research_status": "SOURCE_CANDIDATE",
       "direct_source_ids": [
-        "atcs-semarang"
+        "atcs-semarang",
+        "semarang-integrasi-official",
+        "semarang-pantausemar-official"
       ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
@@ -3480,8 +3488,10 @@
       "province": "Daerah Istimewa Yogyakarta",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "yogyakarta-cctv-open-data"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,
@@ -4024,7 +4034,7 @@
       "province": "Jawa Timur",
       "kind": "CITY_AUTONOMOUS",
       "required": true,
-      "research_status": "HISTORICAL_SOURCE_ONLY",
+      "research_status": "SOURCE_CANDIDATE",
       "direct_source_ids": [
         "cctv-madiun-city"
       ],
