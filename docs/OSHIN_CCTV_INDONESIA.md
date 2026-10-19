@@ -303,3 +303,22 @@ feed layer. In the globe UI select `CCTV 5K+ · GLOBE`.
 
 **Release state:** GitHub PR #2 draft, requires build and browser QA
 before any merge or production claim.
+
+## CCTV UX: actual snapshot on hover, live on explicit click
+
+The native CCTV layer now handles hovering as a read-only actual upstream
+still request. It appends `genuine=1` to a registered camera's frame URL;
+if the real upstream image cannot be obtained, the Vite provider returns
+HTTP 204 instead of a synthetic SVG or a Google Street View fallback.
+
+Video/HLS cameras may show a genuine hover preview only when their
+server-backed source catalog includes an actual `snapshotUrl`. On click
+the existing native camera activation opens its video player; hover
+does not initialize media playback. Static images continue to use the
+existing bounded thumbnail cache.
+
+For the 27 unverified directory/area references in the Gemini globe
+overlay, a screen-space mouseover explicitly states snapshot unavailable.
+Click opens source metadata, not fake live video. The Vercel static
+preview still requires deployment of `/api/cctv/*` before operational
+camera snapshot/live functionality can work.

@@ -163,6 +163,7 @@ export async function installOshinCctvGlobe({
   }
   function setMode(next) {
     mode = next === 'site' ? 'site' : 'hub';
+    clearHoverReference();
     for (const entity of source.entities.values) {
       const feature = entityIndex.get(entity.id);
       entity.show = enabled && feature?.mode === mode;
@@ -212,6 +213,7 @@ export async function installOshinCctvGlobe({
   sitesButton.addEventListener('click', () => setMode('site'));
   visibility.addEventListener('click', () => {
     enabled = !enabled;
+    if (!enabled) clearHoverReference();
     source.show = enabled;
     visibility.textContent = enabled ? 'Sembunyikan titik' : 'Tampilkan titik'; // i18n-ignore: specialist research toggle
     visibility.setAttribute('aria-pressed', String(enabled));
@@ -224,6 +226,52 @@ export async function installOshinCctvGlobe({
       duration: 1.5,
     }),
   );
+  // These markers are source references, NOT verified physical camera points.
+  // Never load video/snapshot media from an unverified research location.
+  const hoverBubble = node('div', 'cg-hover-reference');
+  hoverBubble.id = 'oshin-cctv-globe-hover';
+  hoverBubble.hidden = true;
+  hoverBubble.setAttribute('role', 'status');
+  document.body.append(hoverBubble);
+  let hoveredReferenceId = null;
+  let lastHoverPick = 0;
+  function clearHoverReference() {
+    hoveredReferenceId = null;
+    hoverBubble.hidden = true;
+  }
+  function hoverReferenceAt(position) {
+    if (!enabled || viewer.isDestroyed() || !position) {
+      clearHoverReference();
+      return;
+    }
+    const now = Date.now();
+    if (now - lastHoverPick < 130) return;
+    lastHoverPick = now;
+    let picked;
+    try {
+      picked = viewer.scene.pick(position);
+    } catch {
+      clearHoverReference();
+      return;
+    }
+    const feature = entityIndex.get(picked?.id?.id);
+    if (!feature || feature.mode !== mode) {
+      clearHoverReference();
+      return;
+    }
+    if (hoveredReferenceId !== feature.id) {
+      hoveredReferenceId = feature.id;
+      hoverBubble.replaceChildren(
+        node('strong', '', feature.label),
+        node('span', '', 'Snapshot belum tersedia · lokasi/sumber belum terverifikasi sebagai kamera live.'),
+      );
+    }
+    hoverBubble.hidden = false;
+    hoverBubble.style.left =
+      Math.min(window.innerWidth - 285, Math.max(8, position.x + 16)) + 'px';
+    hoverBubble.style.top =
+      Math.min(window.innerHeight - 85, Math.max(8, position.y + 16)) + 'px';
+  }
   const handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
   handler.setInputAction((movement) => {
     if (!enabled || viewer.isDestroyed()) return;
@@ -235,6 +283,10 @@ export async function installOshinCctvGlobe({
       showDetails(feature);
     }
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+  handler.setInputAction(
+    (movement) => hoverReferenceAt(movement?.endPosition),
+    Cesium.ScreenSpaceEventType.MOUSE_MOVE,
+  );
   setMode('hub');
   requestFrame();
 
@@ -243,6 +295,8 @@ export async function installOshinCctvGlobe({
     if (destroyed) return;
     destroyed = true;
     handler.destroy();
+    clearHoverReference();
+    hoverBubble.remove();
     toggle.remove();
     panel.remove();
     if (!viewer.isDestroyed()) viewer.dataSources.remove(source, true);
