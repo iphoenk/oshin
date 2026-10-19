@@ -244,3 +244,27 @@ use to relevant emergency/safety incidents and disallow unauthorized
 dissemination. Added as source id `indramayu-wongreang-official`,
 `METADATA_ONLY`, unverified for current live playback, to registry and
 Kabupaten Indramayu's 514-region crosswalk.
+
+## User-facing external aggregator gateway · 19 October 2026
+
+Source: [Pantau CCTV Nusantara](https://cctvnusantara.com/) publicly displays
+several thousand entries, but reported counts vary drastically across
+indexed snapshot URLs and dates: Gemini **5,344**, homepage **5,078**
+(indexed Oct 19), historical **6,164**, and page variants **5,450** or **6,192**.
+The site's own disclaimer at
+https://www.cctvnusantara.com/disclaimer says it does not own the
+streams and media copyright remains with individual operators.
+
+OSHIN now has a visible link to `/oshin/cctv/aggregators.html` on the
+CCTV landing page. That page provides a clear comparison of reported
+counts, provenance, sampled regional counts, and a one-click link to
+browse **the directory on the source's own site**. It is not a mirror
+of the aggregator's entire camera inventory. **Zero** individual
+aggregator streams have been ingested or claimed verified. OSHIN does
+not scrape restricted feeds, claim rights to each CCTV, or add 5,344
+fake pins. Sensitive facility feeds are not copied.
+
+To achieve individually searchable and playable 5K+ camera views natively
+in OSHIN requires a source license/API export of camera IDs, an official
+operator provenance per item, geographic metadata, permitted embedding
+and verified live playback. This step has not occurred.
