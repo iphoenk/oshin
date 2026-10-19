@@ -57,22 +57,6 @@ export async function installOshinCctvGlobe({
         outlineWidth: 2,
         disableDepthTestDistance: Number.POSITIVE_INFINITY,
       },
-      label: hub
-        ? {
-            text:
-              feature.id === 'national' ? 'CCTV 5K+ · SUMBER' : feature.label,
-            font: '600 12px Inter, sans-serif',
-            fillColor: palette[feature.mode],
-            outlineColor: Cesium.Color.BLACK,
-            outlineWidth: 3,
-            style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-            pixelOffset: new Cesium.Cartesian2(0, -23),
-            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
-              0,
-              9000000,
-            ),
-          }
-        : undefined,
     });
     entityIndex.set(entity.id, feature);
     if (!hub) siteEntities.push(entity);
@@ -86,18 +70,21 @@ export async function installOshinCctvGlobe({
   toggle.id = 'oshin-cctv-globe-toggle';
   toggle.type = 'button';
   toggle.setAttribute('aria-expanded', 'false');
+  // i18n-ignore: specialist OSHIN research control label
   toggle.setAttribute(
     'aria-label',
-    'Buka kontrol CCTV sumber dan riset di globe',
+    'Buka kontrol CCTV sumber dan riset di globe', // i18n-ignore: specialist OSHIN control label
   );
   const panel = node('aside');
   panel.id = 'oshin-cctv-globe-panel';
   panel.hidden = true;
+  // i18n-ignore: specialist OSHIN source category label
   panel.setAttribute('aria-label', 'CCTV sumber geografis Indonesia');
   const head = node('div', 'cg-head');
   const heading = node('h2', '', 'CCTV 5K+ · Globe Sources');
   const close = node('button', 'cg-close', '×');
   close.type = 'button';
+  // i18n-ignore: specialist OSHIN source control label
   close.setAttribute('aria-label', 'Tutup panel CCTV globe');
   head.append(heading, close);
   panel.append(
@@ -226,7 +213,7 @@ export async function installOshinCctvGlobe({
   visibility.addEventListener('click', () => {
     enabled = !enabled;
     source.show = enabled;
-    visibility.textContent = enabled ? 'Sembunyikan titik' : 'Tampilkan titik';
+    visibility.textContent = enabled ? 'Sembunyikan titik' : 'Tampilkan titik'; // i18n-ignore: specialist research toggle
     visibility.setAttribute('aria-pressed', String(enabled));
     if (enabled) setMode(mode);
     requestFrame();
