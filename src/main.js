@@ -8,7 +8,17 @@ const application = createStandaloneApplication({
   allowQaRegistration: import.meta.env.DEV,
 });
 
-application.start().catch((error) => {
+const started = application.start();
+started.then(async ({ scene }) => {
+  try {
+    const { installOshinCctvGlobe } = await import('./oshin/cctvGlobe.js');
+    await installOshinCctvGlobe({ viewer: scene.viewer });
+  } catch (error) {
+    // The experimental source-reference layer must not break the core globe.
+    console.warn('[OSHIN CCTV Globe] Optional overlay unavailable:', error);
+  }
+});
+started.catch((error) => {
   console.error("God's Eye View initialization failed:", error);
   const loaderStatus = document.querySelector('#loading-screen .loader-status');
   loaderStatus.textContent = t('Error: {message}', {

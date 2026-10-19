@@ -268,3 +268,38 @@ To achieve individually searchable and playable 5K+ camera views natively
 in OSHIN requires a source license/API export of camera IDs, an official
 operator provenance per item, geographic metadata, permitted embedding
 and verified live playback. This step has not occurred.
+
+## Cesium globe source overlays · 19 Oct 2026
+
+The 5K+ request now has a **working source-level globe module** in
+`src/oshin/cctvGlobe.js`, loaded after the main Cesium app starts.
+It is a separate Cesium `CustomDataSource`, not the native camera
+feed layer. In the globe UI select `CCTV 5K+ · GLOBE`.
+
+- **Four directory hub pins**: national directory, DKI Jakarta,
+  Bogor/Jagorawi, Bandung Raya. Centers are geographic navigation
+  references; **NOT** camera positions.
+- **23 Gemini public-area research points**, visible in a separate
+  `lokasi usulan` mode. They are intentionally visually different
+  and never labeled as operational CCTV cameras. The eight Jakarta
+  areas represent 16 claimed views, **not** 16 validated cameras.
+- Clicking any marker presents a place/source card and opens a
+  vetted official portal or the external directory in a new tab.
+- All imagery/live media is **external**; OSHIN never accesses
+  an unlicensed HLS/RTMP URL nor proxies an unknown endpoint.
+- The map data is `public/oshin/cctv/globe-hubs.json`, explicitly
+  marked `no_camera_pins=true` and `no_streams=true`. No
+  camera-specific GPS precision or live health asserted. Four hubs
+  are intentionally sparse instead of hallucinating 5,344 pins.
+- A pure validator `src/oshin/cctvGlobePolicy.js` restricts
+  public source links to named allowed HTTPS domains and enforces
+  accuracy/status flags; tests in `cctvGlobePolicy.test.mjs`.
+- This extra layer cannot replace OSHIN's real authorized camera
+  layer. It remains separate from source records in `server/providers/cctv`.
+- Startup failures only log and leave the original globe functioning.
+- To integrate 5K+ *individual* cameras requires documented
+  camera positions, a redistribution/embedding license and actual
+  working per-camera feed verification. This is not complete yet.
+
+**Release state:** GitHub PR #2 draft, requires build and browser QA
+before any merge or production claim.
