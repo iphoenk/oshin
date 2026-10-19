@@ -13,7 +13,7 @@ test('original upload stays auditable and source count is never inflated', () =>
   assert.equal(original.sources.length, 14);
   assert.equal(original.sources[0].camera_count, 45);
   assert.equal(original.sources[0].cameras.length, 41);
-  assert.equal(registry.sources.length, 49);
+  assert.equal(registry.sources.length, 50);
   assert.equal(registry.statistics.unique_named_cameras, 58);
   assert.equal(registry.statistics.claimed_tasikmalaya_count, 45);
   assert.equal(registry.statistics.listed_tasikmalaya_count, 41);
@@ -147,4 +147,13 @@ test('Gemini source intake is restricted to independently checked government por
  assert.ok(!raw.includes('Ancol-001-701002'));
  assert.equal(registry.statistics.camera_coordinates_verified,0);
  assert.equal(registry.statistics.playback_verified_by_oshin,0);
+});
+
+test('Gemini research intake adds only verified official Indramayu catalog to production-source registry',()=>{
+ const s=registry.sources.find(item=>item.id==='indramayu-wongreang-official');
+ assert.ok(s);
+ assert.equal(s.declared_camera_count,35);
+ assert.equal(s.registered_camera_count,0);
+ assert.equal(s.streaming_verification,'NOT_VERIFIED_BY_OSHIN');
+ assert.equal(s.embedding_permission,'UNKNOWN');
 });

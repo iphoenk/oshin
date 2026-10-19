@@ -1,0 +1,864 @@
+{
+  "_schema": {
+    "name": "OSHIN external Gemini CCTV enrichment · nonoperational intake",
+    "version": "1.0.0",
+    "intake_date": "2026-10-19",
+    "classification": "RESEARCH_BACKLOG_ONLY",
+    "repository_visibility": "PUBLIC",
+    "safety_legend": "Research-only does not confer secrecy; this file is committed to a public repository. Contains sanitized public-location candidates only; private exposed camera endpoints omitted.",
+    "production_usage": "DO_NOT_LOAD_IN_CCTV_PROXY_OR_MAP_LAYER",
+    "no_automatic_feed_extraction": true,
+    "geocoordinate_policy": "Submitted lat/lon describes possible public site or grouped area, NOT verified camera coordinates. NEVER render camera pin from these.",
+    "verification_required": [
+      "operator publication intent",
+      "stream format and actual playback",
+      "camera-specific accurate coordinates",
+      "embed and retransmission rights",
+      "CORS/CSP",
+      "privacy screening"
+    ]
+  },
+  "stats": {
+    "source_portal_leads": 16,
+    "public_site_coordinate_groups": 23,
+    "claimed_jakarta_public_road_views": 16,
+    "national_toll_corridor_names": 11,
+    "volcano_reference_points": 4,
+    "unverified_aggregator_metrics": 6,
+    "actual_verified_camera_coordinates": 0,
+    "authorized_playback_feeds": 0
+  },
+  "public_portal_research_leads": [
+    {
+      "id": "gem-nat-cctvnusantara",
+      "label": "CCTV Nusantara",
+      "operator": "Independent aggregator",
+      "category": "aggregator",
+      "public_landing_url": "https://cctvnusantara.com/",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_GEMINI_UNVERIFIED",
+      "notes": "Contains possible sensitive facilities; do not trust its suggested live count or copy individual links."
+    },
+    {
+      "id": "gem-nat-pantaucctv",
+      "label": "Pantau CCTV Indonesia",
+      "operator": "Independent aggregator",
+      "category": "aggregator",
+      "public_landing_url": "https://pantaucctv.com/",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "PUBLIC_WEBSITE_INDEXED",
+      "notes": "Site shows 9,298 total and 4,559 live in one panel but other counter varies substantially. No independent rights/health evidence."
+    },
+    {
+      "id": "gem-nat-lewatmana",
+      "label": "Lewatmana",
+      "operator": "Third-party traffic site",
+      "category": "aggregator",
+      "public_landing_url": "https://lewatmana.com/",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_GEMINI_UNVERIFIED",
+      "notes": ""
+    },
+    {
+      "id": "gem-nat-transjabartol",
+      "label": "Trans Jabar Tol public CCTV candidate",
+      "operator": "Operator needs confirmation",
+      "category": "toll_operator",
+      "public_landing_url": "https://transjabartol.co.id/live-cctv/",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_GEMINI_UNVERIFIED",
+      "notes": "Specific landing existence and rights not independently proven."
+    },
+    {
+      "id": "gem-nat-rttmc-alt",
+      "label": "Kemenhub mudik CCTV candidate",
+      "operator": "Kemenhub",
+      "category": "national_road",
+      "public_landing_url": "https://mudik.kemenhub.go.id/cctv",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_GEMINI_UNVERIFIED",
+      "notes": "Alternative official-domain route, stream response/rights unverified."
+    },
+    {
+      "id": "gem-nat-k3i",
+      "label": "K3I Korlantas CCTV candidate",
+      "operator": "Korlantas Polri",
+      "category": "law_enforcement",
+      "public_landing_url": "https://k3i.korlantas.polri.go.id/cctv_streaming/",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "PROPOSED_LINK_404",
+      "notes": "Given endpoint previously returned 404; internal/control-plane systems not public CCTV feeds."
+    },
+    {
+      "id": "gem-nat-asdp",
+      "label": "ASDP POCC",
+      "operator": "ASDP",
+      "category": "port_monitoring",
+      "public_landing_url": "https://asdp.id/",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "OFFICIAL_ORGANIZATION_HOME_ONLY",
+      "notes": "Operator homepage is NOT proof of a publicly viewable CCTV stream."
+    },
+    {
+      "id": "gem-legacy-mam",
+      "label": "DIY MAM CCTV portal candidate",
+      "operator": "Pemprov DIY",
+      "category": "regional_cctv",
+      "public_landing_url": "http://mam.jogjaprov.go.id",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_LEGACY_HTTP",
+      "notes": "HTTP-only URL supplied; public streaming and publishing rights unknown."
+    },
+    {
+      "id": "gem-legacy-jateng-gis",
+      "label": "Jateng Dishub GIS",
+      "operator": "Dishub Provinsi Jawa Tengah",
+      "category": "road_gis",
+      "public_landing_url": "http://gis.perhubungan.jatengprov.go.id",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_LEGACY_HTTP",
+      "notes": "No camera-level API identified."
+    },
+    {
+      "id": "gem-garut",
+      "label": "Garut generic government reference",
+      "operator": "Pemkab Garut",
+      "category": "general_homepage",
+      "public_landing_url": "https://www.garutkab.go.id",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "GENERAL_HOME_ONLY",
+      "notes": "Does not itself validate CCTV public playback."
+    },
+    {
+      "id": "gem-cirebon-legacy",
+      "label": "Cirebon ATCS historical link",
+      "operator": "Pemkot Cirebon",
+      "category": "atcs",
+      "public_landing_url": "http://cirebonkota.go.id/atcs/",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_LEGACY_HTTP",
+      "notes": "Earlier cctv-domain claim was dead; treat historical alternate link as unverified."
+    },
+    {
+      "id": "gem-makassar",
+      "label": "Makassar municipal CCTV legacy claim",
+      "operator": "Pemkot Makassar",
+      "category": "city_cctv",
+      "public_landing_url": "http://cctv.makassarkota.go.id",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_URL_NOT_VERIFIED",
+      "notes": "Current official service listing does not prove public camera portal. Municipality reports security CCTV internal but not public-viewable streams."
+    },
+    {
+      "id": "gem-sby-legacy",
+      "label": "Surabaya CCTV legacy web",
+      "operator": "Pemkot Surabaya",
+      "category": "city_cctv",
+      "public_landing_url": "http://cctv.surabaya.go.id",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_LEGACY_HTTP",
+      "notes": "Prefer official SITS app and government portals already in registry; no raw feed."
+    },
+    {
+      "id": "gem-sby-sits-legacy",
+      "label": "Surabaya SITS legacy web",
+      "operator": "Dishub Surabaya",
+      "category": "city_cctv",
+      "public_landing_url": "http://sits.surabaya.go.id",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_LEGACY_HTTP",
+      "notes": "Not an authorized third-party API."
+    },
+    {
+      "id": "gem-denpasar-syndication",
+      "label": "Denpasar independent syndicated webcam portal",
+      "operator": "Third party syndicator",
+      "category": "syndicated_camera",
+      "public_landing_url": "https://www.vision-environnement.com/id/webcam/indonesia/bali/18664-denpasar-dprd-kota-denpasar-panoramic/",
+      "owner_publication_verified": false,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "USER_SUPPLIED_GEMINI_UNVERIFIED",
+      "notes": "Third-party video syndication rights, any upstream government relation and player behavior unverified."
+    },
+    {
+      "id": "gem-indramayu",
+      "label": "Wongreang public CCTV",
+      "operator": "Pemkab Indramayu Diskominfo",
+      "category": "official_cctv_portal",
+      "public_landing_url": "https://cctv.indramayukab.go.id/",
+      "owner_publication_verified": true,
+      "playback_verified": false,
+      "embed_rights": "UNKNOWN",
+      "visibility": "RESEARCH_ONLY_DO_NOT_AUTOPLAY",
+      "evidence_status": "OFFICIAL_PUBLIC_WEB_INDEPENDENTLY_CONFIRMED",
+      "notes": "Also imported to official source registry, 35 cameras on portal and no confirmed online feeds."
+    }
+  ],
+  "submitted_street_and_public_area_site_candidates": [
+    {
+      "id": "g-jkt-lodan",
+      "province": "DKI Jakarta",
+      "regency_city": "Kota Administrasi Jakarta Utara",
+      "area_label": "Jl. Lodan Raya / depan Lodan Center",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.12951,
+        "lon": 106.81498,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 4,
+      "related_operator_portal": "https://jakcctv.jakarta.go.id/publik",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-jkt-ancol-mp",
+      "province": "DKI Jakarta",
+      "regency_city": "Kota Administrasi Jakarta Utara",
+      "area_label": "Ancol / sekitar MP",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.13005,
+        "lon": 106.81003,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 1,
+      "related_operator_portal": "https://jakcctv.jakarta.go.id/publik",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-jkt-krapu",
+      "province": "DKI Jakarta",
+      "regency_city": "Kota Administrasi Jakarta Utara",
+      "area_label": "Jl. Krapu, Penjaringan",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.12701,
+        "lon": 106.8103,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 3,
+      "related_operator_portal": "https://jakcctv.jakarta.go.id/publik",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-jkt-ancol-003",
+      "province": "DKI Jakarta",
+      "regency_city": "Kota Administrasi Jakarta Utara",
+      "area_label": "Area Ancol, kelompok kamera 003",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.13283,
+        "lon": 106.81592,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 3,
+      "related_operator_portal": "https://jakcctv.jakarta.go.id/publik",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-jkt-ancol-006",
+      "province": "DKI Jakarta",
+      "regency_city": "Kota Administrasi Jakarta Utara",
+      "area_label": "Area Ancol, kelompok kamera 006",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.13677,
+        "lon": 106.82182,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 2,
+      "related_operator_portal": "https://jakcctv.jakarta.go.id/publik",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-jkt-ancol-013",
+      "province": "DKI Jakarta",
+      "regency_city": "Kota Administrasi Jakarta Utara",
+      "area_label": "Area Ancol, kelompok kamera 013",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.12499,
+        "lon": 106.8134,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 1,
+      "related_operator_portal": "https://jakcctv.jakarta.go.id/publik",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-jkt-ancol-015",
+      "province": "DKI Jakarta",
+      "regency_city": "Kota Administrasi Jakarta Utara",
+      "area_label": "Area Ancol, kelompok kamera 015",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.13221,
+        "lon": 106.8195,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 1,
+      "related_operator_portal": "https://jakcctv.jakarta.go.id/publik",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-jkt-rawamangun",
+      "province": "DKI Jakarta",
+      "regency_city": "Kota Administrasi Jakarta Timur",
+      "area_label": "Jl. Pemuda / Rawamangun",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.1931,
+        "lon": 106.8892,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 1,
+      "related_operator_portal": "https://jakcctv.jakarta.go.id/publik",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-bdg-alun-alun",
+      "province": "Jawa Barat",
+      "regency_city": "Kota Bandung",
+      "area_label": "Alun-alun / Banceuy / Asia Afrika",
+      "category": "public_square",
+      "submitted_location": {
+        "lat": -6.9218,
+        "lon": 107.6071,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 2,
+      "related_operator_portal": "https://pelindung.bandung.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "Grouped cameras; location only proposed for general area"
+    },
+    {
+      "id": "g-bdg-pramuka",
+      "province": "Jawa Barat",
+      "regency_city": "Kota Bandung",
+      "area_label": "Taman Pramuka / Jl. Riau",
+      "category": "public_park",
+      "submitted_location": {
+        "lat": -6.9103,
+        "lon": 107.6285,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 2,
+      "related_operator_portal": "https://pelindung.bandung.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-bdg-petpark",
+      "province": "Jawa Barat",
+      "regency_city": "Kota Bandung",
+      "area_label": "Pet Park / Jl. Citarum",
+      "category": "public_park",
+      "submitted_location": {
+        "lat": -6.9042,
+        "lon": 107.6228,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 2,
+      "related_operator_portal": "https://pelindung.bandung.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-bdg-gasibu",
+      "province": "Jawa Barat",
+      "regency_city": "Kota Bandung",
+      "area_label": "Lapang Gasibu dan area Pendopo",
+      "category": "public_square",
+      "submitted_location": {
+        "lat": -6.9003,
+        "lon": 107.6186,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 2,
+      "related_operator_portal": "https://pelindung.bandung.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "These named places are not necessarily the same camera location"
+    },
+    {
+      "id": "g-bdg-itb-zoo",
+      "province": "Jawa Barat",
+      "regency_city": "Kota Bandung",
+      "area_label": "Kebun Binatang Bandung / ITB Tamansari",
+      "category": "public_square",
+      "submitted_location": {
+        "lat": -6.8915,
+        "lon": 107.6083,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 2,
+      "related_operator_portal": "https://pelindung.bandung.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "Multi-site reference, not exact camera point"
+    },
+    {
+      "id": "g-bdg-pasar-baru",
+      "province": "Jawa Barat",
+      "regency_city": "Kota Bandung",
+      "area_label": "Pasar Baru / Ciroyom / Sederhana",
+      "category": "public_market_area",
+      "submitted_location": {
+        "lat": -6.9172,
+        "lon": 107.6033,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": null,
+      "related_operator_portal": "https://pelindung.bandung.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "Distinct markets share one vague Gemini coordinate; invalid for camera pins"
+    },
+    {
+      "id": "g-bdg-dago-braga",
+      "province": "Jawa Barat",
+      "regency_city": "Kota Bandung",
+      "area_label": "Simpang Dago, Braga, Pasteur, Antapani",
+      "category": "traffic_intersection_group",
+      "submitted_location": {
+        "lat": -6.8988,
+        "lon": 107.6128,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": null,
+      "related_operator_portal": "https://pelindung.bandung.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "Multiple distinct intersections, proposed group centroid only"
+    },
+    {
+      "id": "g-bgr-semeru",
+      "province": "Jawa Barat",
+      "regency_city": "Kota Bogor",
+      "area_label": "Jl. Semeru, Kota Bogor",
+      "category": "road_public_area",
+      "submitted_location": {
+        "lat": -6.5825,
+        "lon": 106.782,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": null,
+      "related_operator_portal": "https://bsw.kotabogor.go.id/cctv",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-smg-kota-lama",
+      "province": "Jawa Tengah",
+      "regency_city": "Kota Semarang",
+      "area_label": "Kota Lama",
+      "category": "heritage_public_area",
+      "submitted_location": {
+        "lat": -6.9681,
+        "lon": 110.4278,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 21,
+      "related_operator_portal": "https://cctv.semarangkota.go.id/integrasi",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "21 is regional camera count claim, not count verified for exact point"
+    },
+    {
+      "id": "g-smg-simpang-lima",
+      "province": "Jawa Tengah",
+      "regency_city": "Kota Semarang",
+      "area_label": "Simpang Lima / Segitiga Emas",
+      "category": "traffic_intersection_group",
+      "submitted_location": {
+        "lat": -6.9904,
+        "lon": 110.423,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 7,
+      "related_operator_portal": "https://cctv.semarangkota.go.id/integrasi",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-smg-pompa",
+      "province": "Jawa Tengah",
+      "regency_city": "Kota Semarang",
+      "area_label": "Pompa sungai dan wilayah rawan genangan",
+      "category": "public_flood_infrastructure",
+      "submitted_location": {
+        "lat": -6.9585,
+        "lon": 110.4152,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": 24,
+      "related_operator_portal": "https://pantausemar.semarangkota.go.id/dashboard",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "Multi-facility region, not a specific stream location"
+    },
+    {
+      "id": "g-yog-malioboro",
+      "province": "DI Yogyakarta",
+      "regency_city": "Kota Yogyakarta",
+      "area_label": "Malioboro dan simpang utama",
+      "category": "public_street_area",
+      "submitted_location": {
+        "lat": -7.7926,
+        "lon": 110.3658,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": null,
+      "related_operator_portal": "https://dataset.jogjakota.go.id/dataset/dataset2025-18",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "182 is citywide 2025 installed CCTV count, not local or live camera count"
+    },
+    {
+      "id": "g-dps-dprd",
+      "province": "Bali",
+      "regency_city": "Kota Denpasar",
+      "area_label": "Area sekitar DPRD Kota Denpasar",
+      "category": "government_building_exterior",
+      "submitted_location": {
+        "lat": -8.6582,
+        "lon": 115.2162,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": null,
+      "related_operator_portal": "https://atcs.denpasarkota.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "View rights & actual outdoor camera provenance unknown"
+    },
+    {
+      "id": "g-dps-tukad",
+      "province": "Bali",
+      "regency_city": "Kota Denpasar",
+      "area_label": "Tukad Pakerisan",
+      "category": "public_waterway",
+      "submitted_location": {
+        "lat": -8.672,
+        "lon": 115.224,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": null,
+      "related_operator_portal": "https://atcs.denpasarkota.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED"
+    },
+    {
+      "id": "g-dps-teuku-umar",
+      "province": "Bali",
+      "regency_city": "Kota Denpasar",
+      "area_label": "Simpang Teuku Umar (kelompok simpang luas)",
+      "category": "traffic_intersection_group",
+      "submitted_location": {
+        "lat": -8.6695,
+        "lon": 115.2078,
+        "claimed_precision": "GEMINI_UNVERIFIED_SITE_OR_GROUP_LOCATION"
+      },
+      "original_source": "Gemini user-pasted proposal 2026-10-19",
+      "operator_ownership": "NOT_VERIFIED_FOR_THIS_SITE",
+      "camera_count_or_views_claimed": null,
+      "related_operator_portal": "https://atcs.denpasarkota.go.id/",
+      "source_type": "CANDIDATE_SITE_NOT_CAMERA",
+      "verification_status": "NEEDS_OPERATOR_LOCATION_CONFIRMATION",
+      "geometry_usage": "DO_NOT_RENDER_AS_CAMERA_PIN",
+      "playback_status": "NOT_VERIFIED",
+      "streaming_rights": "NOT_ASSESSED",
+      "notes": "Gemini groups Teuku Umar with other distant junctions; not a shared camera point"
+    }
+  ],
+  "national_toll_corridor_names_from_gemini": [
+    "Tol Dalam Kota Jakarta",
+    "Tol Jakarta–Cikampek",
+    "Tol Cipularang",
+    "Tol Cisumdawu",
+    "Tol Ngawi–Kertosono–Mojokerto–Surabaya",
+    "Tol Bakauheni–Terbanggi Besar",
+    "Tol Kayu Agung–Palembang–Betung",
+    "Tol Belawan–Medan–Tanjung Morawa",
+    "Tol Balikpapan–Samarinda",
+    "Tol Manado–Bitung",
+    "Tol Bali–Mandara"
+  ],
+  "volcano_geographic_references_not_camera_points": [
+    {
+      "name": "Anak Krakatau",
+      "province": "Banten / Selat Sunda",
+      "claimed_geographic_reference": {
+        "lat": -6.102,
+        "lon": 105.423
+      },
+      "reference_type": "VOLCANO_OR_OBSERVATION_REGION_NOT_WEBCAM",
+      "operator_portal": "https://magma.esdm.go.id/",
+      "camera_geolocation_verified": false,
+      "stream_exists_verified": false,
+      "point_use": "DO_NOT_RENDER_AS_CAMERA"
+    },
+    {
+      "name": "Merapi",
+      "province": "DI Yogyakarta / Jawa Tengah",
+      "claimed_geographic_reference": {
+        "lat": -7.5407,
+        "lon": 110.4457
+      },
+      "reference_type": "VOLCANO_OR_OBSERVATION_REGION_NOT_WEBCAM",
+      "operator_portal": "https://magma.esdm.go.id/",
+      "camera_geolocation_verified": false,
+      "stream_exists_verified": false,
+      "point_use": "DO_NOT_RENDER_AS_CAMERA"
+    },
+    {
+      "name": "Semeru",
+      "province": "Jawa Timur",
+      "claimed_geographic_reference": {
+        "lat": -8.108,
+        "lon": 112.922
+      },
+      "reference_type": "VOLCANO_OR_OBSERVATION_REGION_NOT_WEBCAM",
+      "operator_portal": "https://magma.esdm.go.id/",
+      "camera_geolocation_verified": false,
+      "stream_exists_verified": false,
+      "point_use": "DO_NOT_RENDER_AS_CAMERA"
+    },
+    {
+      "name": "Marapi",
+      "province": "Sumatera Barat",
+      "claimed_geographic_reference": {
+        "lat": -0.381,
+        "lon": 100.474
+      },
+      "reference_type": "VOLCANO_OR_OBSERVATION_REGION_NOT_WEBCAM",
+      "operator_portal": "https://magma.esdm.go.id/",
+      "camera_geolocation_verified": false,
+      "stream_exists_verified": false,
+      "point_use": "DO_NOT_RENDER_AS_CAMERA"
+    }
+  ],
+  "aggregate_claims_not_verified": [
+    {
+      "claim_id": "gem-cctv-aggregators",
+      "text": "6,500 indexed aggregators",
+      "claimed_value": 6500,
+      "scope": "Unclear whether cameras, aggregators or unique endpoints",
+      "verification": "UNSUBSTANTIATED_NOT_FOR_DASHBOARD"
+    },
+    {
+      "claim_id": "gem-active-public-nodes",
+      "text": "5,344 active public nodes",
+      "claimed_value": 5344,
+      "scope": "Unknown timestamp, unique deduplication, source rights or per-feed playback",
+      "verification": "UNSUBSTANTIATED_NOT_FOR_DASHBOARD"
+    },
+    {
+      "claim_id": "gem-bandung",
+      "text": "434 Bandung Pelindung online cameras",
+      "claimed_value": 434,
+      "scope": "Reported count, not confirmed via individual live streams",
+      "verification": "OPERATOR_TOTAL_UNVALIDATED"
+    },
+    {
+      "claim_id": "gem-semarang",
+      "text": "114 Semarang camera installations",
+      "claimed_value": 114,
+      "scope": "Possibly overlapping sources; cannot sum as verified unique stream count",
+      "verification": "POTENTIAL_OVERLAP"
+    },
+    {
+      "claim_id": "gem-denpasar",
+      "text": "110 Denpasar ATCS cameras",
+      "claimed_value": 110,
+      "scope": "Claim differs from earlier public numbers; no camera enumeration or live playback",
+      "verification": "UNVALIDATED"
+    },
+    {
+      "claim_id": "gem-surabaya",
+      "text": "90+ Surabaya SITS road views",
+      "claimed_value": 90,
+      "scope": "Gemini legacy claim distinct from broader municipal published network",
+      "verification": "UNVALIDATED"
+    }
+  ],
+  "excluded_sensitive_inputs": [
+    {
+      "type": "INSECAM_EXPOSED_DEVICE_FEEDS",
+      "description": "Exclude direct device view URLs, vendor/IP-based location entries, and camera identifiers; mere network exposure is not public consent",
+      "retained_operational_entries": 0
+    },
+    {
+      "type": "RAW_HTTP_HLS_RTMP_PATHS",
+      "description": "Exclude unlicensed, unverified legacy BaliTower transport paths; keep only proposed public-road site names, counts and unverified claimed positions",
+      "retained_operational_entries": 0
+    },
+    {
+      "type": "SENSITIVE_INTERIORS",
+      "description": "Exclude courtroom, court waiting rooms, clinic/hospital interiors, parking surveillance, offices and employee/private facilities where public redistribution is not established",
+      "retained_operational_entries": 0
+    }
+  ]
+}

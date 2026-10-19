@@ -1,7 +1,7 @@
 {
   "_schema": {
     "name": "OSHIN CCTV Indonesia National Coverage (mandatory municipality and regency master)",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "generated": "2026-10-18",
     "administrative_basis": "Kepmendagri No. 300.2.2-2138 Tahun 2025",
     "basis_reference": "https://peraturan.bpk.go.id/Details/322942/keputusan-mendagri-no-nomor-30022-2138-tahun",
@@ -9,7 +9,8 @@
     "note": "All cities and regencies are listed, including places where no public camera portal is mapped yet. NO_SOURCE_MAPPED does not mean a city has no CCTV. Province-level sources do not establish camera locations within DKI's individual cities.",
     "research_update": "2026-10-19",
     "summary_note": "All 514 regions required; direct source candidate does not imply official playback or permission.",
-    "last_source_audit": "2026-10-19"
+    "last_source_audit": "2026-10-19",
+    "gemini_review_reference": "config/oshin/cctv_gemini_review.json (research-only metadata; no geospatial pin authorization)"
   },
   "stats": {
     "provinces": 38,
@@ -2633,8 +2634,10 @@
       "province": "Jawa Barat",
       "kind": "REGENCY",
       "required": true,
-      "research_status": "NO_SOURCE_MAPPED",
-      "direct_source_ids": [],
+      "research_status": "SOURCE_CANDIDATE",
+      "direct_source_ids": [
+        "indramayu-wongreang-official"
+      ],
       "province_portal_source_ids": [],
       "live_cameras_verified": 0,
       "verified_camera_locations": 0,

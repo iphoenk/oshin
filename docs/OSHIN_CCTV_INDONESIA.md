@@ -213,3 +213,34 @@ Six confirmed additional government source records bring OSHIN to
 All new records are metadata-only; no live media or coordinates were
 promoted. Jepara operator's attribution and noncommercial restrictions
 are retained on the catalog card.
+
+## Gemini research enrichment (internal review purpose, GitHub public!)
+
+User requested broader intake of Gemini data for internal analysis. A
+**sanitized, review-only** dataset has been committed under
+`config/oshin/cctv_gemini_review.json`. This file is intentionally
+**not in `public/`**, is not referenced by the Vite/Cesium runtime,
+and is not eligible for CCTV proxying, media playback or operational pins.
+**The repository itself is PUBLIC, so this is not a confidential private store.**
+
+The intake retains Gemini's **23 claimed public-road/place area site
+groups**, covering **16 claimed Jakarta public-road camera views**, 11
+suggested national toll corridor names, four geographic volcano reference
+points (explicitly NOT cameras), and 16 safe portal/research leads.
+Every coordinate retains an **unverified Gemini submission** flag.
+No coordinates can be exported as camera points without operator confirmation.
+
+No Insecam/device exposure paths, private-camera identifiers, raw BaliTower
+legacy HTTP/RTMP transport URLs, sensitive interior feeds or open URL
+proxy are recorded or activated. Submitted 6,500 / 5,344 total figures
+are preserved as unverified *claims*, not dashboard statistics.
+
+### Independently verified addition: Indramayu
+
+The [Pemkab Indramayu Wongreang CCTV portal](https://cctv.indramayukab.go.id/)
+shows **35 kamera** with counters **0 online / 0 offline** in web text
+during the current research check. Its recordings-request terms restrict
+use to relevant emergency/safety incidents and disallow unauthorized
+dissemination. Added as source id `indramayu-wongreang-official`,
+`METADATA_ONLY`, unverified for current live playback, to registry and
+Kabupaten Indramayu's 514-region crosswalk.

@@ -1,16 +1,17 @@
 {
   "_schema": {
     "name": "OSHIN Public CCTV Indonesia · Provenance Registry",
-    "version": "0.7.0",
+    "version": "0.8.0",
     "imported_on": "2026-10-18",
     "user_uploaded_source_version": "0.1.0",
     "note": "A public portal, asserted verified_live, or HLS MIME header is NOT proof that every camera is live, embeddable, or redistributable. No auto-play/proxy without operator rights; coordinates are camera-level only.",
     "priority_note": "P0 prioritization for DKI, Malang Raya (Kota Malang verified portal only), Surabaya and tolls. No OSHIN per-camera live verification or retransmission permission.",
     "research_expansion_note": "15 newly researched official sources by Oct 19; 17 government-published Pontianak watch URLs; no unauthorized live streams, no guessed coordinates.",
-    "external_proposal_audit": "Gemini Oct 19 proposal reviewed. 514-region schema preserved; camera exposure, guessed coords, raw HLS/RTMP, unverified active totals and incompatible React component excluded."
+    "external_proposal_audit": "Gemini Oct 19 proposal reviewed. 514-region schema preserved; camera exposure, guessed coords, raw HLS/RTMP, unverified active totals and incompatible React component excluded.",
+    "gemini_enrichment": "Nonoperational site leads are held under config/oshin/cctv_gemini_review.json (repository PUBLIC, NOT production served). Raw unauthorized device endpoints and unlicensed streams are not copied."
   },
   "statistics": {
-    "sources": 49,
+    "sources": 50,
     "unique_named_cameras": 58,
     "claimed_tasikmalaya_count": 45,
     "listed_tasikmalaya_count": 41,
@@ -21,7 +22,8 @@
     "p0_regions": 4,
     "added_official_sources_2026_10_19": 24,
     "pontianak_public_youtube_view_links": 17,
-    "official_source_accepted_from_gemini_audit": 6
+    "official_source_accepted_from_gemini_audit": 6,
+    "official_web_source_added_2026_10_19": 1
   },
   "sources": [
     {
@@ -2186,6 +2188,34 @@
       "cameras": [],
       "portal_visibility_check": "PUBLIC_INFORMATION_ONLY_PLAYBACK_NOT_VERIFIED",
       "media_rights_note": "Official app view not an OSHIN broadcast license"
+    },
+    {
+      "id": "indramayu-wongreang-official",
+      "operator": "Diskominfo Kabupaten Indramayu · Wongreang CCTV",
+      "category": "city_cctv",
+      "province": "Jawa Barat",
+      "regency_city": "Kabupaten Indramayu",
+      "portal_url": "https://cctv.indramayukab.go.id/",
+      "additional_portal_url": null,
+      "declared_stream_format": "official_location_map_and_cctv_page",
+      "claimed_status": "portal_lists_35_but_status_counts_zero",
+      "registry_verified_on": null,
+      "research_observation": "Portal resmi Kab. Indramayu menampilkan 35 kamera, namun indeks status saat penelusuran menunjukkan 0 online dan 0 offline; jangan nyatakan 35 LIVE. Persyaratan permohonan rekaman khusus darurat, melarang sebar ulang rekaman tanpa dasar berwenang.",
+      "provenance": "independently_found_official_government_2026_10_19",
+      "evidence_url": "https://cctv.indramayukab.go.id/",
+      "evidence_collected_at": "2026-10-19",
+      "declared_camera_count": 35,
+      "registered_camera_count": 0,
+      "coordinate_policy": "CAMERA_VERIFIED_ONLY",
+      "embedding_permission": "UNKNOWN",
+      "redistribution_permission": "UNKNOWN",
+      "no_capture_download": false,
+      "integration_status": "METADATA_ONLY",
+      "streaming_verification": "NOT_VERIFIED_BY_OSHIN",
+      "cameras": [],
+      "portal_visibility_check": "PUBLIC_PORTAL_CATALOG_NOT_MEDIA_VERIFIED",
+      "media_rights_note": "Rekaman hanya untuk kasus darurat yang relevan; permohonan dapat ditolak dan penerima dilarang menyebarluaskan tanpa kewenangan. Ini bukan izin mengarsipkan atau re-stream.",
+      "terms_url": "https://cctv.indramayukab.go.id/"
     }
   ],
   "discovery_backlog": [

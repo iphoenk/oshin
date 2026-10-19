@@ -64,3 +64,19 @@ all `METADATA_ONLY` with no automatic playback:
 Obtain camera-level location & status, documented owner/publication intent,
 individual live playback and terms of embedding. CI, formatting, browser QA
 and deployment remain pending. No camera streams were enabled by this intake.
+
+## User-directed internal-enrichment follow-up
+
+The Gemini proposal's useful municipal street/road and public-space
+location names, approximate claimed coordinates, toll corridors and
+noncamera volcano georeferences were retained in
+`config/oshin/cctv_gemini_review.json` as a research queue rather than
+silently discarded. Every proposed coordinate is unverified and
+`geometry_usage=DO_NOT_RENDER_AS_CAMERA_PIN`.
+
+Crucial visibility clarification: `iphoenk/oshin` is a **public GitHub
+repository**; a `config/` file is not deployed as a public web asset
+but remains publicly readable as GitHub source. Do not store confidential
+camera locations, device URLs, access credentials or surveillance
+materials in this branch. An actually confidential working set would
+need a private repository or controlled storage.
