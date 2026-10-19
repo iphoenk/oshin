@@ -12,7 +12,13 @@ const started = application.start();
 started.then(async ({ scene }) => {
   try {
     const { installOshinCctvGlobe } = await import('./oshin/cctvGlobe.js');
-    await installOshinCctvGlobe({ viewer: scene.viewer });
+    const disposeCctvGlobe = await installOshinCctvGlobe({ viewer: scene.viewer });
+    const unsubscribe = application.subscribe((state) => {
+      if (state.status === 'destroying' || state.status === 'destroyed') {
+        unsubscribe();
+        disposeCctvGlobe();
+      }
+    });
   } catch (error) {
     // The experimental source-reference layer must not break the core globe.
     console.warn('[OSHIN CCTV Globe] Optional overlay unavailable:', error);

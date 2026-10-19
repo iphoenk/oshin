@@ -95,7 +95,10 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
   const actions = node('div', 'cg-actions');
   const focus = node('button', '', 'Fokus Indonesia');
   focus.type = 'button';
-  actions.append(focus);
+  const visibility = node('button', '', 'Sembunyikan titik');
+  visibility.type = 'button';
+  visibility.setAttribute('aria-pressed', 'true');
+  actions.append(focus, visibility);
   panel.append(actions);
   const list = node('div', 'cg-list');
   panel.append(list);
@@ -165,6 +168,14 @@ export async function installOshinCctvGlobe({ viewer, fetchImpl = fetch, signal 
   close.addEventListener('click', togglePanel);
   hubsButton.addEventListener('click', () => setMode('hub'));
   sitesButton.addEventListener('click', () => setMode('site'));
+  visibility.addEventListener('click', () => {
+    enabled = !enabled;
+    source.show = enabled;
+    visibility.textContent = enabled ? 'Sembunyikan titik' : 'Tampilkan titik';
+    visibility.setAttribute('aria-pressed', String(enabled));
+    if (enabled) setMode(mode);
+    requestFrame();
+  });
   focus.addEventListener('click', () => viewer.camera.flyTo({
     destination: Cesium.Cartesian3.fromDegrees(118.0149, -2.5489, 6500000),
     duration: 1.5,
