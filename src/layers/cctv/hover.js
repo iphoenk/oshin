@@ -4,6 +4,7 @@ import {
 } from '../../data/cctvCards.js';
 import { staticFrameRefreshMs } from '../../data/cctvLod.js';
 import { HOVER_PICK_THROTTLE_MS, HOVER_RELEASE_MS } from './policy.js';
+import { canShowRealSnapshotOnHover } from './hoverPolicy.js';
 
 export function createHover({ state: layerState, services, parts, source }) {
   /**
@@ -49,9 +50,7 @@ export function createHover({ state: layerState, services, parts, source }) {
       !!record &&
       cameraId !== layerState._activeCameraId &&
       !layerState._cardIds.has(cameraId) &&
-      !parts.model.isVideoFeedType(
-        parts.model.normalizeFeedType(record.camera.feedType),
-      );
+      canShowRealSnapshotOnHover(record.camera);
     if (eligible) {
       cancelHoverRelease();
       layerState._hoverCardId = cameraId;
@@ -115,7 +114,10 @@ export function createHover({ state: layerState, services, parts, source }) {
     const slot = parts.cards.ensureCardFrameSlot(cameraId);
     const refreshMs = staticFrameRefreshMs(record.camera);
     if (!frameFetchDue(slot, refreshMs, Date.now())) return;
-    parts.cards.fetchCardFrame(record, slot, refreshMs, { userGesture: true });
+    parts.cards.fetchCardFrame(record, slot, refreshMs, {
+      userGesture: true,
+      genuineOnly: true,
+    });
   }
   return {
     handleHoverMove,

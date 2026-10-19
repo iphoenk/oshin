@@ -1,0 +1,130 @@
+{
+  "_schema": {
+    "name": "OSHIN CCTV large external directory observations",
+    "version": "1.0.0",
+    "recorded_date": "2026-10-19",
+    "representation": "AGGREGATOR_PORTAL_NAVIGATION_ONLY",
+    "disclaimer": "Total is reported by third-party site and changes between indexed snapshots. Does NOT represent individually verified or OSHIN-playable cameras.",
+    "rights_status": "UNKNOWN_PER_CAMERA",
+    "viewer_mode": "OPEN_IN_SOURCE_SITE_ONLY",
+    "integration_validation": "NOT_AUTHORIZED_FOR_MEDIA_RELAY"
+  },
+  "directory": {
+    "id": "cctv-nusantara-external",
+    "title": "Pantau CCTV Nusantara",
+    "url": "https://cctvnusantara.com/",
+    "disclaimer_url": "https://www.cctvnusantara.com/disclaimer",
+    "operator": "Third-party CCTV directory/aggregator",
+    "ownership_note": "Disclaimer says site does not own camera streams; operator/individual camera rights remain with each source.",
+    "source_rights_review": "Source availability is not a license for copying or rehosting streams. Public page lists some courthouse, waiting-room and other potentially sensitive facility cameras.",
+    "import_mode": "EXTERNAL_DIRECTORY_LINK",
+    "individual_camera_records_imported": 0,
+    "live_streams_verified_independently_by_oshin": 0
+  },
+  "counts": [
+    {
+      "id": "gemini",
+      "reported_count": 5344,
+      "count_type": "Gemini claim from user-pasted proposal",
+      "observation_date": "2026-10-19",
+      "verification": "EXTERNAL_UNVERIFIED_CLAIM",
+      "source_url": "https://cctvnusantara.com/"
+    },
+    {
+      "id": "main-current",
+      "reported_count": 5078,
+      "count_type": "Public site index — live nodes claimed",
+      "observation_date": "2026-10-19",
+      "verification": "SEARCH_INDEXED_PAGE_TEXT_NOT_PLAYBACK_CHECK",
+      "source_url": "https://cctvnusantara.com/"
+    },
+    {
+      "id": "main-older",
+      "reported_count": 6164,
+      "count_type": "Earlier indexed main page claimed active nodes",
+      "observation_date": null,
+      "observation_note": "Search crawler says approx 3 weeks before 2026-10-19; exact observation time not available",
+      "verification": "HISTORICAL_SEARCH_INDEXED_PAGE_TEXT",
+      "source_url": "https://www.cctvnusantara.com/"
+    },
+    {
+      "id": "camera-page-previous",
+      "reported_count": 5450,
+      "count_type": "Alternate camera URL indexed reported nodes",
+      "observation_date": null,
+      "observation_note": "Crawler says approx 4 days before 2026-10-19; exact timestamp not available",
+      "verification": "HISTORICAL_SEARCH_INDEXED_PAGE_TEXT",
+      "source_url": "https://www.cctvnusantara.com/?cam=badilag-liveapp-664450360551091162049269"
+    },
+    {
+      "id": "camera-page-archive",
+      "reported_count": 6192,
+      "count_type": "Alternative indexed camera page reported active nodes",
+      "observation_date": null,
+      "observation_note": "Crawler says last week; not independently confirmed",
+      "verification": "HISTORICAL_SEARCH_INDEXED_PAGE_TEXT",
+      "source_url": "https://cctvnusantara.com/?cam=bogor-ciheleut"
+    }
+  ],
+  "regions_sample": {
+    "source_count_snapshot": "2026-10-19 site home search indexed data, NOT full directory export",
+    "sample_items": [
+      {
+        "name": "DKI Jakarta",
+        "claimed_entries": 29,
+        "source_url": "https://cctvnusantara.com/",
+        "camera_records_in_oshin": 0
+      },
+      {
+        "name": "Bogor & Jagorawi",
+        "claimed_entries": 70,
+        "source_url": "https://cctvnusantara.com/",
+        "camera_records_in_oshin": 0
+      },
+      {
+        "name": "Kabupaten Bogor",
+        "claimed_entries": 21,
+        "source_url": "https://cctvnusantara.com/",
+        "camera_records_in_oshin": 0
+      },
+      {
+        "name": "Kawasan Puncak Bogor",
+        "claimed_entries": 10,
+        "source_url": "https://cctvnusantara.com/",
+        "camera_records_in_oshin": 0
+      },
+      {
+        "name": "Bandung Raya",
+        "claimed_entries": 460,
+        "source_url": "https://cctvnusantara.com/",
+        "camera_records_in_oshin": 0
+      },
+      {
+        "name": "Kota Cimahi",
+        "claimed_entries": 3,
+        "source_url": "https://cctvnusantara.com/",
+        "camera_records_in_oshin": 0
+      },
+      {
+        "name": "Kabupaten Bandung (Soreang)",
+        "claimed_entries": 3,
+        "source_url": "https://cctvnusantara.com/",
+        "camera_records_in_oshin": 0
+      },
+      {
+        "name": "Kota Bekasi",
+        "claimed_entries": 14,
+        "source_url": "https://cctvnusantara.com/",
+        "camera_records_in_oshin": 0
+      }
+    ],
+    "warning": "Region count data represents separate and possibly overlapping source groups and includes sensitive locations omitted from this review. No direct camera links mirrored in OSHIN."
+  },
+  "acceptance": {
+    "external_browsing_now": true,
+    "camera_level_local_search": false,
+    "native_cesium_camera_pins": false,
+    "native_hls_playback": false,
+    "next_required": "Explicit distributor/owner permission, authorized camera-level export and stream links, per-camera verification, and camera-specific coordinates."
+  }
+}

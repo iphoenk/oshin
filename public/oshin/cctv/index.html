@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a1421" />
+    <meta name="description" content="OSHIN · Direktori CCTV publik Indonesia. Katalog metadata pemerintah, status verifikasi, dan aturan tayang." />
+    <title>OSHIN · CCTV Indonesia</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href="/"><span class="logo">◉</span> OSHIN <span class="thin">/ CCTV INDONESIA</span></a>
+      <a class="return" href="/">↖ Kembali ke globe 3D</a>
+    </header>
+    <main class="page">
+      <div class="intro"><span class="eyebrow">PUBLIC SOURCE INTELLIGENCE · INDONESIA</span>
+        <h1>CCTV Source Registry</h1>
+        <p>Indeks portal dan kamera CCTV publik. <strong>Terdaftar tidak berarti streaming aktif</strong>, dan izin menonton tidak sama dengan izin embed atau redistribusi.</p>
+      </div>
+      <div class="metrics" id="metrics" aria-live="polite"></div>
+      <nav class="priority-nav" aria-label="CCTV P0 wilayah">
+        <div class="priority-note"><strong>PRIORITAS P0</strong><span>DKI Jakarta · Malang Raya · Surabaya · Tol</span></div>
+        <div class="priority-buttons">
+          <button class="priority-button selected" type="button" data-priority="ALL" aria-pressed="true">Semua</button>
+          <button class="priority-button" type="button" data-priority="P0_DKI" aria-pressed="false">DKI Jakarta</button>
+          <button class="priority-button" type="button" data-priority="P0_MALANG" aria-pressed="false">Malang Raya</button>
+          <button class="priority-button" type="button" data-priority="P0_SURABAYA" aria-pressed="false">Surabaya</button>
+          <button class="priority-button" type="button" data-priority="P0_TOL" aria-pressed="false">Jalan Tol</button>
+        </div>
+      </nav>
+      <section class="fivek-entry" aria-label="Direktori CCTV ribuan titik">
+        <div><span class="fivek-eyebrow">SOURCE AGGREGATOR · 5K+ CCTV</span><h2>Jelajahi jaringan ribuan CCTV</h2>
+        <p>5.344 adalah klaim Gemini; angka sumber berubah. Buka direktori eksternal untuk memilih CCTV, tanpa mengklaim semuanya sebagai feed OSHIN.</p></div>
+        <a href="./aggregators.html">JELAJAHI CCTV 5K+ ↗</a>
+      </section>
+      <div class="national-link"><a href="./regions.html">JELAJAHI SEMUA 98 KOTA DAN 416 KABUPATEN <span>→</span></a><p>Master nasional · 38 provinsi · status tiap wilayah transparan</p></div>
+      <section class="toolbar" aria-label="Penyaring registri">
+        <label>Temukan sumber atau kamera<input id="search" type="search" placeholder="Nama kota, instansi, simpang, portal..." autocomplete="off" /></label>
+        <label>Provinsi<select id="province"><option value="">Semua provinsi</option></select></label>
+        <label>Status<select id="status"><option value="">Semua status</option><option value="METADATA_ONLY">Metadata / riset</option><option value="OFFLINE">Tidak tersedia</option><option value="DEPRECATED">Legacy</option><option value="APP_ONLY">Aplikasi saja</option></select></label>
+      </section>
+      <p id="notice" class="notice" role="status">Memuat registry publik…</p>
+      <section id="list" class="list" aria-label="Daftar sumber CCTV"></section>
+      <aside class="footnote">
+        <h2>Batasan operasional</h2>
+        <p>Semua tautan membuka <b>situs operator resmi</b>. Kami tidak mengunduh video, mem-bypass proteksi, atau me-rehost stream. URL HLS yang tercatat pada riset tidak otomatis diputar. Akses dan izin penggunaan harus disahkan oleh operator CCTV masing-masing. Camera pin hanya boleh diaktifkan setelah lokasi kamera terverifikasi; titik pusat kota tidak digunakan sebagai pengganti.</p>
+        <p>Untuk ATCS Banyumas, operator secara eksplisit melarang download/capture video. Integrasi hanya tautan ke portal.</p>
+      </aside>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

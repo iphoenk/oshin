@@ -1,0 +1,128 @@
+/* PHONE-X visual overlay on God’s Eye View and its real Cesium scene.
+   Preserve all original layer, navigation and camera provider components. */
+:root {
+  --px-line: rgba(96, 213, 230, .32);
+  --px-panel: rgba(5, 19, 35, .87);
+  --bg-dark: #060f1d;
+  --glass-bg: rgba(5, 20, 36, .83);
+  --glass-border: rgba(115, 211, 233, .24);
+  --glass-border-hover: rgba(127, 248, 226, .55);
+  --accent: #71e4ef;
+  --accent-dim: rgba(113, 228, 239, .15);
+  --accent-glow: rgba(58, 214, 225, .25);
+  --text-primary: #e7faff;
+  --text-secondary: rgba(213, 242, 249, .72);
+  --text-dim: rgba(190, 225, 237, .46);
+  --panel-radius: 13px;
+  --btn-radius: 8px;
+  --left-stack-x: 24px;
+  --right-rail-x: 24px;
+}
+body:not(.ui-clean-view):not(.recording-mode)::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: .2;
+  background-image:
+    linear-gradient(90deg, #53abc620 1px, transparent 1px),
+    linear-gradient(#53abc620 1px, transparent 1px);
+  background-size: 84px 84px;
+  mask-image: linear-gradient(90deg,#0009,transparent 25%,transparent 75%,#0008);
+}
+#title-bar { top: 20px; left: 24px; }
+#title-bar h1 {
+  font: 800 clamp(17px, 1.7vw, 25px)/1.2 var(--font-sans);
+  letter-spacing: .08em;
+  gap: 9px;
+  text-shadow: 0 2px 22px #000a;
+}
+#title-bar .title-logo { width: 38px; }
+#title-bar .px-name { color: #f2ffff; }
+#title-bar .px-suffix { color: #79f5db; font-weight: 600; letter-spacing: .14em; }
+#title-bar .subtitle { margin: 8px 0 0 48px; color: #a0cfdb; font-size: 9px; letter-spacing: .2em; }
+#title-bar .title-glow { opacity: .25; }
+#style-indicator { top: 20px; right: 24px; }
+#top-center-actions { top: 19px; }
+#top-center-actions button { border-radius: 10px; border-color: var(--px-line); background: var(--px-panel); }
+:is(.data-panel-inner,.panel-inner,.cctv-panel-inner,.street-level-panel-inner,.weather-panel-inner,.recent-imagery-panel-inner,.global-context-panel-inner) {
+  background: var(--px-panel);
+  border-color: var(--px-line);
+  box-shadow: 0 16px 42px #0008, inset 0 1px #ffffff10;
+}
+#command-dock {
+  border-radius: 16px;
+  border-color: var(--px-line);
+  background: linear-gradient(135deg, rgba(9, 32, 51, .95), rgba(4, 13, 27, .95));
+  box-shadow: 0 20px 46px #0009;
+}
+#command-dock > #gev-voice-control { background: rgba(15, 47, 66, .97); border-color: #76e6d870; }
+.panel-title,.pp-header-label { letter-spacing: .13em; }
+.px-console {
+  position: fixed;
+  z-index: 101;
+  top: 94px;
+  right: 24px;
+  width: min(305px, calc(100vw - 28px));
+  padding: 13px 14px;
+  background: linear-gradient(135deg, rgba(10, 33, 52, .97), rgba(3, 14, 28, .95));
+  color: #ddf8ff;
+  border: 1px solid var(--px-line);
+  border-radius: 14px;
+  box-shadow: 0 14px 42px #000a, inset 0 1px #ffffff0b;
+  backdrop-filter: blur(24px);
+  font-family: var(--font-mono);
+}
+.px-console::before {
+  content: '';
+  position: absolute;
+  left: -1px; top: 16px; bottom: 16px;
+  width: 2px;
+  background: linear-gradient(#76fae1, transparent);
+}
+.px-heading { display: flex; justify-content: space-between; gap: 8px; font: 700 9px/1.4 var(--font-mono); letter-spacing: .1em; color: #9bbfce; }
+.px-engine { color: #83f7db; white-space: nowrap; }
+.px-links { display: flex; gap: 6px; margin-top: 11px; }
+.px-action {
+  flex: 1; min-width: 0;
+  border: 1px solid #609eb04a;
+  border-radius: 8px;
+  padding: 10px 4px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background: #173c52a8;
+  color: #d8f5fb;
+  font: 700 9px/1.3 var(--font-mono);
+  cursor: pointer;
+}
+.px-action:hover { background: #225d70; border-color: #7befdc; }
+.px-home { background: #77eedc; border-color: #a4ffec; color: #052531; }
+.px-home:hover { background: #b4fff0; color: #052531; }
+.px-action:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.px-view { display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #8bcddd30; padding-top: 10px; margin-top: 11px; }
+.px-view-label { color: #83adbc; font-size: 9px; letter-spacing: .12em; }
+.px-coordinates { font-size: 10px; font-variant-numeric: tabular-nums; color: #d3f5ff; }
+body.ui-clean-view .px-console,body.recording-mode .px-console { display: none; }
+@media(max-width:980px) {
+  .px-console { top: 83px; right: 14px; width: 275px; }
+  #style-indicator { display: none; }
+}
+@media(max-width:720px) {
+  :root { --left-stack-x: 12px; --right-rail-x: 12px; }
+  #title-bar { top: max(11px,env(safe-area-inset-top)); left: 10px; }
+  #title-bar h1 { gap: 5px; font-size: 14px; letter-spacing: .025em; }
+  #title-bar .title-logo { width: 24px; }
+  #title-bar h1 > span:last-child { display: inline-flex; }
+  #title-bar .subtitle { display: none; }
+  #top-center-actions { top: max(11px,env(safe-area-inset-top)); right: 8px; gap: 3px; }
+  #top-center-actions button { width: 31px; height: 32px; border-radius: 8px; }
+  .px-console { top: max(62px,calc(env(safe-area-inset-top) + 51px)); right: 9px; width: 264px; padding: 11px; }
+  .px-view { display: none; }
+  .px-heading { font-size: 8px; }
+}
+@media(max-width:400px) {
+  #title-bar .px-suffix { display: none; }
+  .px-console { width: 245px; }
+}

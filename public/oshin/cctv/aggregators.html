@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#0a1421"/>
+  <script>
+    // Set the saved palette before styles load to avoid a wrong-theme flash.
+    try { const selected = localStorage.getItem("oshin-cctv-theme");
+      if (selected === "light" || selected === "dark") document.documentElement.dataset.theme = selected;
+    } catch { /* private browsing may disable storage */ }
+  </script>
+  <meta name="description" content="OSHIN CCTV 5K+ · Akses direktori CCTV nasional pihak ketiga dan audit jumlah kamera yang diklaim."/>
+  <title>OSHIN · CCTV 5K+ Direktori</title>
+  <link rel="stylesheet" href="./aggregators.css"/>
+</head>
+<body>
+  <header class="header">
+    <a href="/" class="brand"><span class="mark">◉</span> OSHIN <span class="lite">/ CCTV 5K+</span></a>
+    <div class="header-actions">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Ubah ke mode terang" aria-pressed="true">☀ Mode terang</button>
+      <a class="back" href="./">← Katalog resmi OSHIN</a>
+    </div>
+  </header>
+  <main>
+    <div class="eyebrow">EXTERNAL CCTV SOURCE INDEX · AUDITED</div>
+    <h1>Jelajahi ribuan CCTV Indonesia</h1>
+    <p class="intro">Angka 5.344 yang dikirim Gemini adalah <strong>klaim jumlah kamera di agregator</strong>, bukan 5.344 video yang sudah diverifikasi OSHIN. Di sini kamu bisa membuka seluruh direktori asalnya dan membandingkan perubahan angka antar-pemeriksaan.</p>
+    <div id="status" role="status" class="status">Memuat catatan sumber…</div>
+    <section id="summary" class="summary" aria-label="Statistik dari sumber"></section>
+    <section class="lead">
+      <div>
+        <h2>Pantau CCTV Nusantara <span class="note">direktori eksternal</span></h2>
+        <p>Direktori kamera jalan raya, ATCS, tol dan wilayah Indonesia. Pembukaan kamera berlangsung di situs sumber, bukan relay OSHIN.</p>
+        <a id="directory-link" target="_blank" rel="noopener noreferrer" class="action" href="https://cctvnusantara.com/">Buka direktori CCTV ribuan kamera ↗</a>
+        <a id="source-disclaimer" target="_blank" rel="noopener noreferrer" class="secondary" href="https://www.cctvnusantara.com/disclaimer">Baca penafian sumber ↗</a>
+      </div>
+      <div class="guardrail">
+        <strong>Batasan</strong>
+        <p>Kamera yang terdaftar tidak otomatis aktif atau diizinkan untuk ditanam (*embed*) dan disiarkan ulang. Beberapa daftar agregator mencakup fasilitas sensitif; OSHIN tidak menyalin raw stream atau perangkat yang terekspos.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Perbandingan klaim jumlah CCTV</h2>
+      <div id="snapshots" class="snapshots" aria-label="Riwayat hitungan sumber"></div>
+    </section>
+    <section>
+      <h2>Cuplikan wilayah dari direktori sumber</h2>
+      <p class="muted">Ini bukan inventaris seluruh 5.344 CCTV. Cuplikan jumlah berdasarkan halaman utama yang terindeks pada 19 Oktober 2026. Tautan tiap wilayah mengarah ke direktori sumber untuk memilih kamera di sana.</p>
+      <div id="regions" class="regions"></div>
+    </section>
+    <footer>OSHIN menyimpan identitas/provenance sumber dan klaim angka, bukan menyalin rekaman atau inventaris lengkap agregator tanpa izin. Data CCTV publik pemerintah yang sudah dicatat tersendiri tersedia pada <a href="./">registry resmi/kandidat</a> dan <a href="./regions.html">514 wilayah administratif</a>.</footer>
+  </main>
+  <script type="module" src="./aggregators.js"></script>
+</body>
+</html>

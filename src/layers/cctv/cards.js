@@ -9,6 +9,7 @@ import {
   applyFrameResult,
 } from '../../data/cctvCards.js';
 import * as Cesium from 'cesium';
+import { realSnapshotFrameUrl } from './hoverPolicy.js';
 import { horizonOccluder } from '../../data/iconOrientation.js';
 import { selectCctvLod, applyEvictionGrace } from '../../data/cctvLod.js';
 import {
@@ -275,7 +276,7 @@ export function createCards({ state: layerState, services, parts, source }) {
     record,
     slot,
     refreshMs,
-    { userGesture = false } = {},
+    { userGesture = false, genuineOnly = false } = {},
   ) {
     if (typeof document !== 'undefined' && document.hidden && !userGesture)
       return;
@@ -329,7 +330,15 @@ export function createCards({ state: layerState, services, parts, source }) {
     };
     image.onload = () => settle(true);
     image.onerror = () => settle(false);
-    image.src = parts.frames.frameUrlFor(record.camera, refreshMs);
+    const frameUrl = parts.frames.frameUrlFor(record.camera, refreshMs);
+    const requestedUrl = genuineOnly
+      ? realSnapshotFrameUrl(frameUrl)
+      : frameUrl;
+    if (!requestedUrl) {
+      settle(false);
+      return;
+    }
+    image.src = requestedUrl;
   }
 
   /** Starts the card-frame pacer (idempotent; policy-gated per tick). */

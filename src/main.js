@@ -8,7 +8,23 @@ const application = createStandaloneApplication({
   allowQaRegistration: import.meta.env.DEV,
 });
 
-application.start().catch((error) => {
+const started = application.start();
+started.then(async ({ scene }) => {
+  try {
+    const { installPhoneXConsole } = await import('./oshin/phoneX.js');
+    if (application.getState().status !== 'ready') return;
+    const dispose = installPhoneXConsole(scene.viewer);
+    const unsubscribe = application.subscribe((state) => {
+      if (state.status === 'destroying' || state.status === 'destroyed') {
+        unsubscribe();
+        dispose();
+      }
+    });
+  } catch (error) {
+    console.warn('[OSHIN PHONE-X] Optional UI could not load:', error);
+  }
+});
+started.catch((error) => {
   console.error("God's Eye View initialization failed:", error);
   const loaderStatus = document.querySelector('#loading-screen .loader-status');
   loaderStatus.textContent = t('Error: {message}', {
